@@ -6,22 +6,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @Entity
-@Table(name = "users")
-public class UserEntity {
+@Table(name = "answers")
+public class AnswerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String description;
+    private LocalDateTime answerDateTime;
 
-    @OneToMany(mappedBy = "user")
-    private List<AnswerEntity> answers;
+    @OneToOne
+    private QuestionEntity question;
+
+    @ManyToOne
+    private UserEntity user;
 }
-
