@@ -22,9 +22,12 @@ public class AnswerEntity {
     private String description;
     private LocalDateTime answerDateTime;
 
-    @OneToOne
-    private QuestionEntity question;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
     @ManyToOne
-    private UserEntity user;
+    @JoinColumn(name = "question_id")
+    private QuestionEntity question;
+
 }

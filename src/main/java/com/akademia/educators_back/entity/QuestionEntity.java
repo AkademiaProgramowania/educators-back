@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -22,6 +24,6 @@ public class QuestionEntity {
     private String description;
     private QuestionCategory questionCategory;
 
-    @OneToOne(mappedBy = "question")
-    private AnswerEntity answer;
+    @OneToMany(mappedBy = "question")
+    private List<AnswerEntity> answers;
 }
