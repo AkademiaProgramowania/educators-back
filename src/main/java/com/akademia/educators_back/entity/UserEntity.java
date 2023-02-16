@@ -1,23 +1,23 @@
 package com.akademia.educators_back.entity;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
-@NoArgsConstructor
-@Getter
-@Setter
-@ToString
-@Entity
-@Table(name = "users")
 public class UserEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String name;
-    //TODO Add AnswerEntity 
+
+    public UserEntity(long id, String name){
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
 
