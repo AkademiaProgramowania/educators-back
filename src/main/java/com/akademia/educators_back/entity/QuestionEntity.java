@@ -1,6 +1,8 @@
 package com.akademia.educators_back.entity;
 
+import com.akademia.educators_back.enums.QuestionCategory;
 import jakarta.persistence.*;
+import jdk.jfr.Category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,14 +15,15 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name = "users")
-public class UserEntity {
+@Table(name = "questions")
+public class QuestionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String description;
+    private QuestionCategory questionCategory;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "question")
     private List<AnswerEntity> answers;
 }
-
