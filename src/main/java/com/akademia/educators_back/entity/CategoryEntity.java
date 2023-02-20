@@ -7,20 +7,19 @@ import java.util.List;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @Entity
-@Table(name = "users")
-public class UserEntity {
+@Table(name = "categories")
+public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String password;
+    private String categoryName;
 
-    @OneToMany(mappedBy = "user")
-    private List<CommentEntity> answers;
+    @OneToMany(mappedBy = "problem")
+    private List<ProblemEntity> problems;
 }
-

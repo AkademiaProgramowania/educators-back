@@ -6,28 +6,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
-
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @Entity
-@Table(name = "answers")
-public class AnswerEntity {
+@Table(name = "comments")
+public class CommentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String description;
-    private LocalDateTime answerDateTime;
+    private String title;
+    private String question;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
     @ManyToOne
-    @JoinColumn(name = "question_id")
-    private QuestionEntity question;
+    @JoinColumn(name = "problem_id")
+    private ProblemEntity problem;
 
 }
