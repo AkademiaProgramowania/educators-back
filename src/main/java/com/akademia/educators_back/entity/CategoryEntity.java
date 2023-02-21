@@ -6,8 +6,6 @@ import lombok.*;
 import java.util.List;
 
 @NoArgsConstructor
-@RequiredArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -20,6 +18,6 @@ public class CategoryEntity {
     private Long id;
     private String categoryName;
 
-    @OneToMany(mappedBy = "problem")
+    @OneToMany(mappedBy = "categoryEntity")
     private List<ProblemEntity> problems;
 }

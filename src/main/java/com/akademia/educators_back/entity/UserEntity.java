@@ -6,7 +6,6 @@ import lombok.*;
 import java.util.List;
 
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -20,7 +19,7 @@ public class UserEntity {
     private String name;
     private String password;
 
-    @OneToMany(mappedBy = "user")
-    private List<CommentEntity> answers;
+    @OneToMany(mappedBy = "userEntity")
+    private List<CommentEntity> comments;
 }
 

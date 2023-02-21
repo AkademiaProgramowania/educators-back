@@ -17,15 +17,13 @@ public class CommentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String question;
+    private String answer;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserEntity user;
+    private UserEntity userEntity;
 
     @ManyToOne
     @JoinColumn(name = "problem_id")
-    private ProblemEntity problem;
-
+    private ProblemEntity problemEntity;
 }

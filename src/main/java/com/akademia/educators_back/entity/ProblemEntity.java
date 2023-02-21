@@ -6,8 +6,6 @@ import lombok.*;
 import java.util.List;
 
 @NoArgsConstructor
-@RequiredArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -21,10 +19,10 @@ public class ProblemEntity {
     private String title;
     private String question;
 
-    @OneToMany(mappedBy = "comment")
+    @OneToMany(mappedBy = "problemEntity")
     private List<CommentEntity> comments;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private CategoryEntity category;
+    private CategoryEntity categoryEntity;
 }
