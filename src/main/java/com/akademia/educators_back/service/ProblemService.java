@@ -1,26 +1,35 @@
 package com.akademia.educators_back.service;
 
+import com.akademia.educators_back.to.ProblemTo;
 import com.akademia.educators_back.entity.ProblemEntity;
+import com.akademia.educators_back.exception.ProblemDoesNotExistException;
+import com.akademia.educators_back.mapper.ProblemMapper;
 import com.akademia.educators_back.repository.ProblemRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProblemService {
 
-    ProblemRepository problemRepository;
+    private ProblemRepository problemRepository;
+    private ProblemMapper problemMapper;
+    private ProblemEntity problemEntity;
 
-    public void addProblemToDB(ProblemEntity problem) {
-        problemRepository.save(problem);
+    public void addProblemToDB(ProblemTo problemTo) {
+        problemEntity = problemMapper.toProblemEntity(problemTo);
+        problemRepository.save(problemEntity);
     }
 
-    public void deleteProblemFromDB(ProblemEntity problem) {
-        problemRepository.delete(problem);
+    public void deleteProblemFromDB(ProblemTo problemTo) {
+        problemEntity = problemMapper.toProblemEntity(problemTo);
+        problemRepository.delete(problemEntity);
     }
 
-    public void updateProblem(Long id, String newTitle, String newQuestion) {
-        ProblemEntity questionEntity = problemRepository.findById(id).orElseThrow(NullPointerException::new);
-        questionEntity.setTitle(newTitle);
-        questionEntity.setQuestion(newQuestion);
-        problemRepository.save(questionEntity);
+    public void updateProblem(ProblemTo problemTo) {
+        problemEntity = problemMapper.toProblemEntity(problemTo);
+        problemEntity = problemRepository.findById(problemTo.getId()).orElseThrow(()->new ProblemDoesNotExistException("Such a problem does not exist"));
+        problemEntity.setQuestion(problemTo.getQuestion());
+        problemEntity.setTitle(problemTo.getTitle());
+        problemEntity.setCategoryEntity(problemTo.getCategoryEntity());
+        problemRepository.save(problemEntity);
     }
 }

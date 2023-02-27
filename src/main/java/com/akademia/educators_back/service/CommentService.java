@@ -1,24 +1,33 @@
 package com.akademia.educators_back.service;
 
+import com.akademia.educators_back.to.CommentTo;
 import com.akademia.educators_back.entity.CommentEntity;
+import com.akademia.educators_back.exception.CommentDoesNotExistException;
+import com.akademia.educators_back.mapper.CommentMapper;
 import com.akademia.educators_back.repository.CommentRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CommentService {
 
-    CommentRepository commentRepository;
+    private CommentRepository commentRepository;
+    private CommentMapper commentMapper;
+    private CommentEntity commentEntity;
 
-    public void addCommentToDB(CommentEntity comment) {
-        commentRepository.save(comment);
+    public void addCommentToDB(CommentTo commentTo) {
+        commentEntity = commentMapper.toCommentEntity(commentTo);
+        commentRepository.save(commentEntity);
     }
 
-    public void deleteProblemFromDB(CommentEntity comment) {commentRepository.delete(comment);
+    public void deleteProblemFromDB(CommentTo commentTo) {
+        commentEntity = commentMapper.toCommentEntity(commentTo);
+        commentRepository.delete(commentEntity);
     }
 
-    public void updateComment(Long id, String newAnswer) {
-        CommentEntity commentEntity = commentRepository.findById(id).orElseThrow(NullPointerException::new);
-        commentEntity.setAnswer(newAnswer);
+    public void updateComment(CommentTo commentTo) {
+        commentEntity = commentMapper.toCommentEntity(commentTo);
+        commentEntity = commentRepository.findById(commentTo.getId()).orElseThrow(()->new CommentDoesNotExistException("Such a comment does not exist"));
+        commentEntity.setAnswer(commentTo.getAnswer());
         commentRepository.save(commentEntity);
     }
 }
