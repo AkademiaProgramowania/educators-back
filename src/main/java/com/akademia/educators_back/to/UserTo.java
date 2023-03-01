@@ -12,5 +12,5 @@ public class UserTo {
     private Long id;
     private String name;
     private String password;
-    private List<CommentTo> commentsTo;
+    private List<Long> commentsToId;
 }

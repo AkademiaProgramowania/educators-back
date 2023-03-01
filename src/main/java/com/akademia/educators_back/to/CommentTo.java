@@ -9,6 +9,6 @@ public class CommentTo {
 
     private Long id;
     private String answer;
-    private UserTo userTo;
-    private ProblemTo problemTo;
+    private Long userId;
+    private Long problemToId;
 }

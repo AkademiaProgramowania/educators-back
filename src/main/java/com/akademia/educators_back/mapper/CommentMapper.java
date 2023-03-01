@@ -9,7 +9,7 @@ public class CommentMapper {
 
     public CommentEntity toCommentEntity(CommentTo commentTo){
         CommentEntity commentEntity = new CommentEntity();
-        if(commentTo.getId() != null){
+        if(commentTo != null){
             commentEntity.setId(commentTo.getId());
         }
         commentEntity.setAnswer(commentTo.getAnswer());
@@ -18,7 +18,7 @@ public class CommentMapper {
 
     public CommentTo toCommentTO(CommentEntity commentEntity){
         CommentTo commentTo = new CommentTo();
-        if(commentEntity.getId() != null){
+        if(commentEntity != null){
             commentTo.setId(commentEntity.getId());
         }
         commentTo.setAnswer(commentEntity.getAnswer());

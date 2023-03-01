@@ -13,6 +13,6 @@ public class ProblemTo {
     private Long id;
     private String title;
     private String question;
-    private List<CommentTo> commentsTo;
+    private List<Long> commentsToId;
     private CategoryEntity categoryEntity;
 }

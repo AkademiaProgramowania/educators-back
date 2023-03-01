@@ -26,7 +26,7 @@ public class CommentService {
 
     public void updateComment(CommentTo commentTo) {
         commentEntity = commentMapper.toCommentEntity(commentTo);
-        commentEntity = commentRepository.findById(commentTo.getId()).orElseThrow(()->new CommentDoesNotExistException("Such a comment does not exist"));
+        commentEntity = commentRepository.findById(commentTo.getId()).orElseThrow(()->new CommentDoesNotExistException("Comment does not exist"));
         commentEntity.setAnswer(commentTo.getAnswer());
         commentRepository.save(commentEntity);
     }

@@ -26,7 +26,7 @@ public class ProblemService {
 
     public void updateProblem(ProblemTo problemTo) {
         problemEntity = problemMapper.toProblemEntity(problemTo);
-        problemEntity = problemRepository.findById(problemTo.getId()).orElseThrow(()->new ProblemDoesNotExistException("Such a problem does not exist"));
+        problemEntity = problemRepository.findById(problemTo.getId()).orElseThrow(()->new ProblemDoesNotExistException("Problem does not exist"));
         problemEntity.setQuestion(problemTo.getQuestion());
         problemEntity.setTitle(problemTo.getTitle());
         problemEntity.setCategoryEntity(problemTo.getCategoryEntity());

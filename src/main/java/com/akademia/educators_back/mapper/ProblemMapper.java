@@ -9,7 +9,7 @@ public class ProblemMapper {
 
     public ProblemEntity toProblemEntity(ProblemTo problemTo){
         ProblemEntity problemEntity = new ProblemEntity();
-        if(problemTo.getId() != null){
+        if(problemTo != null){
             problemEntity.setId(problemTo.getId());
         }
         problemEntity.setTitle(problemTo.getTitle());
@@ -19,7 +19,7 @@ public class ProblemMapper {
 
     public ProblemTo toProblemTO(ProblemEntity problemEntity){
         ProblemTo problemTo = new ProblemTo();
-        if(problemEntity.getId() != null){
+        if(problemEntity != null){
             problemTo.setId(problemEntity.getId());
         }
         problemTo.setTitle(problemEntity.getTitle());
