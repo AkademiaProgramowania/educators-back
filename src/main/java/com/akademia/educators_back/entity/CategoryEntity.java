@@ -9,16 +9,14 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "users")
-public class UserEntity {
+@Table(name = "categories")
+public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String password;
+    private String categoryName;
 
-    @OneToMany(mappedBy = "userEntity")
-    private List<CommentEntity> comments;
+    @OneToMany(mappedBy = "categoryEntity")
+    private List<ProblemEntity> problems;
 }
-
