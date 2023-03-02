@@ -12,7 +12,7 @@ public class Application {
     @Autowired
     private FileRepository repo2;
 
-    @Autowired //wstrzykiwanie zaleznosci
+    @Autowired //wstrzykiwanie zaleznosci - dependency injection
     public Application(@Qualifier("File") Repository repo) {
         this.repo = repo;
         System.out.println("aplikacja");
@@ -32,5 +32,7 @@ public class Application {
         repo.save();
     }
 
+//servlet//tomcat - contener servletow - server - nasluchuje zapytania
+    //dispatcher servlet - dopisuje metode kontrolera i uruchamia
 
 }

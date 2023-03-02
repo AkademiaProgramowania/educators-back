@@ -13,3 +13,6 @@ public class ScannerConfiguration {
         return scanner;
     }
 }
+
+
+//SOLID
