@@ -2,6 +2,7 @@ package com.akademia.educators_back.controller;
 
 import com.akademia.educators_back.entity.UserEntity;
 import com.akademia.educators_back.service.UserService;
+import com.akademia.educators_back.to.UserTo;
 import jakarta.annotation.PostConstruct;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -28,16 +29,16 @@ public class UserController {
 
          */
     @GetMapping("/api/users")
-    public ResponseEntity<List<UserEntity>> getUsers(){
+    public ResponseEntity<List<UserTo>> getUsers(){
         //ResponseEntity<UserEntity> response = new ResponseEntity<>(user1, HttpStatus.OK);
         return ResponseEntity.ok()
-                .body(userService.getUser());
+                .body(userService.getUsers());
     }
 
     @PostMapping("/api/users")
-    void createUser(@RequestBody UserEntity userEntity){
-        System.out.println(userEntity);
-        userService.addUser(userEntity);
+    void createUser(@RequestBody UserTo userTo){
+        System.out.println(userTo);
+        userService.addUser(userTo);
     }
 
     //statusy tworzonych obiektow - rest api
