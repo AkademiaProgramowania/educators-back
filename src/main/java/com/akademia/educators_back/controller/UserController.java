@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 public class UserController {
@@ -29,18 +30,31 @@ public class UserController {
 
          */
     @GetMapping("/api/users")
-    public ResponseEntity<List<UserTo>> getUsers(){
+    public ResponseEntity<List<UserTo>> getUsers() {
         //ResponseEntity<UserEntity> response = new ResponseEntity<>(user1, HttpStatus.OK);
         return ResponseEntity.ok()
                 .body(userService.getUsers());
     }
 
     @PostMapping("/api/users")
-    void createUser(@RequestBody UserTo userTo){
+    void createUser(@RequestBody UserTo userTo) {
         System.out.println(userTo);
         userService.addUser(userTo);
     }
 
+    @GetMapping("/api/sers/{id}") //PathVariable do wyciagania ze sciezki
+    public ResponseEntity<UserTo> findUserById(@PathVariable int id) {
+        try {
+            return ResponseEntity.ok()
+                    .body(userService.getUserById(id));
+
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        }
+
+    }
+
     //statusy tworzonych obiektow - rest api
+    //optionals
 
 }

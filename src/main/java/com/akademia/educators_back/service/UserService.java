@@ -35,4 +35,9 @@ public class UserService {
     public void addUser(UserTo userTo) {
         userRepository.save(userMapper.userToToUserEntity(userTo));
     }
+
+    public UserTo getUserById(long id){
+       UserEntity userEntity= userRepository.findById(id).get(); //TODO
+       return userMapper.userEntityToUserTO(userEntity);
+    }
 }
