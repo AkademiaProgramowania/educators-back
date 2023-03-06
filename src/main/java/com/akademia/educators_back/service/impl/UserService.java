@@ -1,4 +1,4 @@
-package com.akademia.educators_back.service;
+package com.akademia.educators_back.service.impl;
 
 import org.springframework.stereotype.Service;
 
