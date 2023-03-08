@@ -1,11 +1,8 @@
 package com.akademia.educators_back.controller;
 
-import com.akademia.educators_back.entity.CommentEntity;
-import com.akademia.educators_back.entity.ProblemEntity;
-import com.akademia.educators_back.service.CommentService;
+import com.akademia.educators_back.service.CommentServiceImpl;
+import com.akademia.educators_back.service.impl.CommentService;
 import com.akademia.educators_back.to.CommentTo;
-import com.akademia.educators_back.to.ProblemTo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +13,7 @@ import java.util.List;
 public class CommentController {
     private CommentService commentService;
 
-    public CommentController(CommentService commentService) {
+    public CommentController(CommentServiceImpl commentService) {
         this.commentService = commentService;
     }
 

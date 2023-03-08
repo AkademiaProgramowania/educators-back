@@ -1,12 +1,11 @@
 package com.akademia.educators_back.service;
 
-import com.akademia.educators_back.entity.ProblemEntity;
+import com.akademia.educators_back.service.impl.CommentService;
 import com.akademia.educators_back.to.CommentTo;
 import com.akademia.educators_back.entity.CommentEntity;
 import com.akademia.educators_back.exception.CommentDoesNotExistException;
 import com.akademia.educators_back.mapper.CommentMapper;
 import com.akademia.educators_back.repository.CommentRepository;
-import com.akademia.educators_back.to.ProblemTo;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,14 +13,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CommentService {
+public class CommentServiceImpl implements CommentService {
 
     private CommentRepository commentRepository;
     private CommentMapper commentMapper;
     private CommentEntity commentEntity;
 
 
-    public CommentService(CommentRepository commentRepository, CommentMapper commentMapper) {
+    public CommentServiceImpl(CommentRepository commentRepository, CommentMapper commentMapper) {
         this.commentRepository = commentRepository;
         this.commentMapper = commentMapper;
     }
