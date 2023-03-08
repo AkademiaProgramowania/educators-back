@@ -11,13 +11,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CommentService {
 
     private CommentRepository commentRepository;
     private CommentMapper commentMapper;
-    //private CommentEntity commentEntity;
+    private CommentEntity commentEntity;
 
 
     public CommentService(CommentRepository commentRepository, CommentMapper commentMapper) {
@@ -49,4 +50,12 @@ public class CommentService {
         }
         return commentToList;
     }
+
+    public CommentTo getCommentById(Long id){
+        Optional<CommentEntity> commentOptional = commentRepository.findById(id);
+        CommentEntity comment = commentOptional.orElseThrow();
+        CommentTo commentToById = commentMapper.toCommentTO(comment);
+        return commentToById;
+    }
+
 }
