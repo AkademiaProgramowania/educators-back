@@ -1,4 +1,4 @@
-package com.akademia.educators_back.service;
+package com.akademia.educators_back.service.impl;
 
 import com.akademia.educators_back.to.CommentTo;
 import com.akademia.educators_back.entity.CommentEntity;
