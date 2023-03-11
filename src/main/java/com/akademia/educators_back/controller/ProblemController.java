@@ -1,5 +1,6 @@
 package com.akademia.educators_back.controller;
 
+import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.service.impl.ProblemServiceImpl;
 import com.akademia.educators_back.to.ProblemTo;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @RequestMapping("api/problems")
 @RestController
@@ -24,11 +24,11 @@ public class ProblemController {
 
     @GetMapping("/{id}")
     public ResponseEntity findUserById(@PathVariable Long id){
-        ResponseEntity responseEntity;
+        ResponseEntity responseEntity = null;
         try {
             responseEntity = ResponseEntity.ok().body(problemService.getProblemById(id));
-        }catch (NoSuchElementException e){
-            return ResponseEntity.notFound().build();
+        }catch (ProblemDoesNotExistException e){
+            System.out.println("Problem does not exist");;
         }
         return responseEntity;
     }
