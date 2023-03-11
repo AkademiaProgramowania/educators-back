@@ -1,8 +1,9 @@
 package com.akademia.educators_back.controller;
 
-import com.akademia.educators_back.service.impl.ProblemService;
+import com.akademia.educators_back.service.impl.ProblemServiceImpl;
 import com.akademia.educators_back.to.ProblemTo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,23 +15,26 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class ProblemController {
 
-    public ProblemService problemService;
+    public ProblemServiceImpl problemService;
 
-    @GetMapping("/api/problemsList")
+    @GetMapping("/list")
     public ResponseEntity<List<ProblemTo>> getProblems(){
         return ResponseEntity.ok().body(problemService.getProblems());
     }
 
-    @GetMapping("/api/problem/{id}")
-    public ResponseEntity<ProblemTo> findUserById(@PathVariable Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity findUserById(@PathVariable Long id){
+        ResponseEntity responseEntity;
         try {
-            return ResponseEntity.ok().body(problemService.getProblemById(id));
+            responseEntity = ResponseEntity.ok().body(problemService.getProblemById(id));
         }catch (NoSuchElementException e){
             return ResponseEntity.notFound().build();
         }
+        return responseEntity;
     }
 
-    @PostMapping("/api/addProblem")
+    @PostMapping("/add")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     void createProblem(@RequestBody ProblemTo problemTo){
         problemService.addProblemToDB(problemTo);
     }

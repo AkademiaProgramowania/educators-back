@@ -3,5 +3,5 @@ package com.akademia.educators_back.service.impl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class UserServiceImpl {
 }

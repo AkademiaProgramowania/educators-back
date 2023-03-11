@@ -1,6 +1,6 @@
 package com.akademia.educators_back.service.impl;
 
-import com.akademia.educators_back.service.ProblemInterface;
+import com.akademia.educators_back.service.Problem;
 import com.akademia.educators_back.to.ProblemTo;
 import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.exception.ProblemDoesNotExistException;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ProblemService implements ProblemInterface {
+public class ProblemServiceImpl implements Problem {
 
     private ProblemRepository problemRepository;
     private ProblemMapper problemMapper;
@@ -51,7 +51,7 @@ public class ProblemService implements ProblemInterface {
 
     @Override
     public ProblemTo getProblemById(Long id) {
-        ProblemEntity problemEntity = problemRepository.findById(id).get();
+        problemEntity = problemRepository.findById(id).orElseThrow(()->new ProblemDoesNotExistException("Problem does not exist"));
         return problemMapper.toProblemTO(problemEntity);
     }
 }
