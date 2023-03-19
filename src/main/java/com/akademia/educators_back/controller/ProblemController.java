@@ -1,5 +1,6 @@
 package com.akademia.educators_back.controller;
 
+import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.service.impl.ProblemServiceImpl;
 import com.akademia.educators_back.to.ProblemTo;
@@ -23,15 +24,16 @@ public class ProblemController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity findUserById(@PathVariable Long id){
-        ResponseEntity responseEntity = null;
+    public ProblemTo findProblemById(@PathVariable Long id){
+        ProblemTo problemTo;
         try {
-            responseEntity = ResponseEntity.ok().body(problemService.getProblemById(id));
+            problemTo = problemService.getProblemById(id);
         }catch (ProblemDoesNotExistException e){
-            System.out.println("Problem does not exist");;
+            throw new ProblemDoesNotExistException(id);
         }
-        return responseEntity;
+        return problemTo;
     }
+
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.ACCEPTED)

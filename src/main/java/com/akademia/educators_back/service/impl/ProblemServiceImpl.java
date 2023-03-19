@@ -32,7 +32,7 @@ public class ProblemServiceImpl implements Problem {
     @Override
     public void updateProblem(ProblemTo problemTo) {
         problemEntity = problemMapper.toProblemEntity(problemTo);
-        problemEntity = problemRepository.findById(problemTo.getId()).orElseThrow(()->new ProblemDoesNotExistException("Problem does not exist"));
+        problemEntity = problemRepository.findById(problemTo.getId()).orElseThrow(()->new ProblemDoesNotExistException(problemTo.getId()));
         problemEntity.setQuestion(problemTo.getQuestion());
         problemEntity.setTitle(problemTo.getTitle());
         problemEntity.setCategoryEntity(problemTo.getCategoryEntity());
@@ -51,7 +51,7 @@ public class ProblemServiceImpl implements Problem {
 
     @Override
     public ProblemTo getProblemById(Long id) {
-        problemEntity = problemRepository.findById(id).orElseThrow(()->new ProblemDoesNotExistException("Problem does not exist"));
+        problemEntity = problemRepository.findById(id).orElseThrow(()->new ProblemDoesNotExistException(id));
         return problemMapper.toProblemTO(problemEntity);
     }
 }
