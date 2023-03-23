@@ -4,6 +4,7 @@ import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.service.impl.ProblemServiceImpl;
 import com.akademia.educators_back.to.ProblemTo;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RequestMapping("api/problems")
 @RestController
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ProblemController {
 
     public ProblemServiceImpl problemService;
