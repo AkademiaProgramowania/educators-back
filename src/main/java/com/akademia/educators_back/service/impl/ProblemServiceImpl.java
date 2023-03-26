@@ -6,6 +6,7 @@ import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.mapper.ProblemMapper;
 import com.akademia.educators_back.repository.ProblemRepository;
+import com.akademia.educators_back.valicators.ProblemValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ public class ProblemServiceImpl implements Problem {
 
     private ProblemRepository problemRepository;
     private ProblemMapper problemMapper;
+    private ProblemValidator problemValidator;
 
     @Override
     public void addProblemToDB(ProblemTo problemTo) {
@@ -33,6 +35,7 @@ public class ProblemServiceImpl implements Problem {
 
     @Override
     public void updateProblem(ProblemTo problemTo) {
+        problemValidator.categoryExistingChecking(problemTo);
         ProblemEntity problemEntity = problemMapper.toProblemEntity(problemTo);
         problemEntity = problemRepository.findById(problemTo.getId()).orElseThrow(()->new ProblemDoesNotExistException(problemTo.getId()));
         problemEntity.setQuestion(problemTo.getQuestion());
