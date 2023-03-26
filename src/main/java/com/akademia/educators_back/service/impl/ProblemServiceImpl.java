@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class ProblemServiceImpl implements Problem {
-
+    //todo DODAĆ METODY WALIDACJI DO SERWISU
     private ProblemRepository problemRepository;
     private ProblemMapper problemMapper;
     private ProblemValidator problemValidator;
@@ -35,7 +35,7 @@ public class ProblemServiceImpl implements Problem {
 
     @Override
     public void updateProblem(ProblemTo problemTo) {
-        problemValidator.categoryExistingChecking(problemTo);
+        problemValidator.ProblemCategoryExistingChecking(problemTo);
         ProblemEntity problemEntity = problemMapper.toProblemEntity(problemTo);
         problemEntity = problemRepository.findById(problemTo.getId()).orElseThrow(()->new ProblemDoesNotExistException(problemTo.getId()));
         problemEntity.setQuestion(problemTo.getQuestion());
