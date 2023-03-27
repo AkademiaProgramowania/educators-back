@@ -16,7 +16,7 @@ public class ProblemValidator {
     private ProblemMapper problemMapper;
 
 
-    public ProblemTo ProblemCategoryExistingChecking(ProblemTo problemTo){
+    public ProblemTo problemCategoryExistingChecking(ProblemTo problemTo){
         if(!problemRepository.existsByCategoryEntity_CategoryName(problemTo.getCategoryEntity().getCategoryName())) {
             throw new CategoryDoesNotExistException(problemTo.getCategoryEntity().getCategoryName());
         }

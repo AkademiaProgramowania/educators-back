@@ -16,26 +16,35 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class ProblemServiceImpl implements Problem {
-    //todo DODAĆ METODY WALIDACJI DO SERWISU
     private ProblemRepository problemRepository;
     private ProblemMapper problemMapper;
     private ProblemValidator problemValidator;
 
     @Override
     public void addProblemToDB(ProblemTo problemTo) {
+        problemValidator.problemCategoryExistingChecking(problemTo);
+        problemValidator.problemTitleLengthChecking(problemTo);
+        problemValidator.problemQuestionExistingChecking(problemTo);
+        problemValidator.problemQuestionLengthChecking(problemTo);
         ProblemEntity problemEntity = problemMapper.toProblemEntity(problemTo);
         problemRepository.save(problemEntity);
     }
 
     @Override
     public void deleteProblemFromDB(ProblemTo problemTo) {
+        problemValidator.problemCategoryExistingChecking(problemTo);
+        problemValidator.problemTitleLengthChecking(problemTo);
+        problemValidator.problemQuestionExistingChecking(problemTo);
         ProblemEntity problemEntity = problemMapper.toProblemEntity(problemTo);
         problemRepository.delete(problemEntity);
     }
 
     @Override
     public void updateProblem(ProblemTo problemTo) {
-        problemValidator.ProblemCategoryExistingChecking(problemTo);
+        problemValidator.problemCategoryExistingChecking(problemTo);
+        problemValidator.problemTitleLengthChecking(problemTo);
+        problemValidator.problemQuestionExistingChecking(problemTo);
+        problemValidator.problemQuestionLengthChecking(problemTo);
         ProblemEntity problemEntity = problemMapper.toProblemEntity(problemTo);
         problemEntity = problemRepository.findById(problemTo.getId()).orElseThrow(()->new ProblemDoesNotExistException(problemTo.getId()));
         problemEntity.setQuestion(problemTo.getQuestion());
