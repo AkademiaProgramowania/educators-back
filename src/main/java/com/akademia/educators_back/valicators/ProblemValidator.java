@@ -1,6 +1,9 @@
 package com.akademia.educators_back.valicators;
 
 import com.akademia.educators_back.exception.CategoryDoesNotExistException;
+import com.akademia.educators_back.exception.ProblemAlreadyExistException;
+import com.akademia.educators_back.exception.ProblemDoesNotExistException;
+import com.akademia.educators_back.exception.TextIsToLongOrToShortException;
 import com.akademia.educators_back.mapper.ProblemMapper;
 import com.akademia.educators_back.repository.ProblemRepository;
 import com.akademia.educators_back.to.ProblemTo;
@@ -22,24 +25,22 @@ public class ProblemValidator {
 
     public ProblemTo problemQuestionExistingChecking(ProblemTo problemTo){
         if(!problemRepository.existsByQuestion(problemTo.getQuestion())){
-            //todo dodac wyjatek
+            throw new ProblemAlreadyExistException(problemTo.getQuestion());
         }
         return problemTo;
     }
 
-    //todo DODAĆ TRZECIĄ METODĘ WALIDACJI
 
     public ProblemTo problemTitleLengthChecking(ProblemTo problemTo){
         if(problemTo.getTitle().length() < 3 || problemTo.getTitle().length() > 100) {
-            //todo dodac wyjatek
+            throw new TextIsToLongOrToShortException("Provided title has incorrect length");
         }
         return problemTo;
     }
 
-    //todo DODAĆ czwartą METODĘ WALIDACJI
     public ProblemTo problemQuestionLengthChecking(ProblemTo problemTo) {
         if (problemTo.getQuestion().length() < 10 || problemTo.getTitle().length() > 1000) {
-            //todo dodac wyjatek
+            throw new TextIsToLongOrToShortException("Provided question has incorrect length");
         }
         return problemTo;
     }
