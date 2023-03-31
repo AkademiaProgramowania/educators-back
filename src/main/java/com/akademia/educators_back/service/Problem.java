@@ -1,14 +1,14 @@
 package com.akademia.educators_back.service;
 
-import com.akademia.educators_back.to.ProblemTo;
+import com.akademia.educators_back.to.ProblemUpdateTo;
 
 import java.util.List;
 
 public interface Problem {
-    void addProblemToDB(ProblemTo problemTo);
-    void deleteProblemFromDB(ProblemTo problemTo);
-    void updateProblem(ProblemTo problemTo);
-    List<ProblemTo> getProblems();
+    void addProblemToDB(ProblemUpdateTo problemTo);
+    void deleteProblemFromDB(ProblemUpdateTo problemTo);
+    void updateProblem(ProblemUpdateTo problemTo);
+    List<ProblemUpdateTo> getProblems();
 
-    ProblemTo getProblemById(Long id);
+    ProblemUpdateTo getProblemById(Long id);
 }
