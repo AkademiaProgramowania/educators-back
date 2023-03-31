@@ -2,7 +2,7 @@ package com.akademia.educators_back.controller;
 
 import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.service.impl.ProblemServiceImpl;
-import com.akademia.educators_back.to.ProblemUpdateTo;
+import com.akademia.educators_back.to.ProblemTo;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +18,13 @@ public class ProblemController {
     public ProblemServiceImpl problemService;
 
     @GetMapping("/list")
-    public ResponseEntity<List<ProblemUpdateTo>> getProblems(){
+    public ResponseEntity<List<ProblemTo>> getProblems(){
         return ResponseEntity.ok().body(problemService.getProblems());
     }
 
     @GetMapping("/{id}")
-    public ProblemUpdateTo findProblemById(@PathVariable Long id){
-        ProblemUpdateTo problemTo;
+    public ProblemTo findProblemById(@PathVariable Long id){
+        ProblemTo problemTo;
         try {
             problemTo = problemService.getProblemById(id);
         }catch (ProblemDoesNotExistException e){
@@ -36,7 +36,7 @@ public class ProblemController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void createProblem(@RequestBody ProblemUpdateTo problemTo){
+    void createProblem(@RequestBody ProblemTo problemTo){
         System.out.println("213123");
         problemService.addProblemToDB(problemTo);
     }

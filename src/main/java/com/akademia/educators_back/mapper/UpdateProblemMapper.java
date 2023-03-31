@@ -1,7 +1,6 @@
 package com.akademia.educators_back.mapper;
 
 import com.akademia.educators_back.to.ProblemTo;
-import com.akademia.educators_back.to.ProblemUpdateTo;
 import com.akademia.educators_back.entity.ProblemEntity;
 import org.springframework.stereotype.Component;
 
