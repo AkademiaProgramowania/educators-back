@@ -1,8 +1,8 @@
 package com.akademia.educators_back.exception;
 
 public class ProblemAlreadyExistException extends RuntimeException{
-    //TODO konstruktor dostaje parametr ale go nie wykorzystuje
+    //TODO RESOLVED konstruktor dostaje parametr ale go nie wykorzystuje
     public ProblemAlreadyExistException(String message) {
-        super("This problem already exist");
+        super("Problem " + message + " already exist");
     }
 }
