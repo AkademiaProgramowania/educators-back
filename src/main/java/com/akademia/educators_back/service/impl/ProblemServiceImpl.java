@@ -22,8 +22,6 @@ public class ProblemServiceImpl implements Problem {
     private AddProblemMapper addProblemMapper;
     private ProblemValidator problemValidator;
 
-    //TODO RESOLVED to wszystko związane z walidacją wyciągnąć do osobnej metody prywatnej na przykład
-
     @Override
     public void addProblemToDB(ProblemTo problemTo) {
         validationMethod(problemTo);
@@ -41,7 +39,6 @@ public class ProblemServiceImpl implements Problem {
     @Override
     public void updateProblem(ProblemTo problemTo) {
         validationMethod(problemTo);
-        //TODO RESOLVED ta 48 linijka jest nie potrzebna
         ProblemEntity problemEntity;
         problemEntity = problemRepository.findById(problemTo.getId()).orElseThrow(()->new ProblemDoesNotExistException(problemTo.getId()));
         problemEntity.setQuestion(problemTo.getQuestion());

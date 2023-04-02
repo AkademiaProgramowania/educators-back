@@ -7,11 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface ProblemRepository extends JpaRepository<ProblemEntity, Long> {
 
-    //TODO wg konwencji daszki _ dajemy raczej do stałych więc lepszy camelCase.
-    // Samą nazwę bym trochę uprościł bo nie rozumiem czym
-    // jest ten boolean np: ifCategoryNameExists podobnie poniżej
-    // np: ifQuestionExists
-
     boolean existsByCategoryEntity_CategoryName(String categoryName);
     boolean existsByQuestion(String question);
 
