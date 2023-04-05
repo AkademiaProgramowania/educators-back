@@ -9,6 +9,10 @@ import com.akademia.educators_back.repository.CommentRepository;
 import com.akademia.educators_back.valicators.CommentValidator;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CommentServiceImpl implements Comment {
 
@@ -35,6 +39,24 @@ public class CommentServiceImpl implements Comment {
         commentEntity = commentRepository.findById(commentTo.getId()).orElseThrow(() -> new CommentDoesNotExistException("Comment does not exist"));
         commentEntity.setAnswer(commentTo.getAnswer());
         commentRepository.save(commentEntity);
+    }
+
+    @Override
+    public List<CommentTo> getComments() {
+        List<CommentTo> commentToList = new ArrayList<>();
+        List<CommentEntity> comments = commentRepository.findAll();
+        for (CommentEntity comment : comments) {
+            commentToList.add(commentMapper.toCommentTO(comment));
+        }
+        return commentToList;
+    }
+
+    @Override
+    public CommentTo getCommentById(Long id) {
+        Optional<CommentEntity> commentOptional = commentRepository.findById(id);
+        CommentEntity comment = commentOptional.orElseThrow();
+        CommentTo commentToById = commentMapper.toCommentTO(comment);
+        return commentToById;
     }
 
     public void validationMethod(CommentTo commentTo) {
