@@ -2,13 +2,13 @@ package com.akademia.educators_back.service.impl;
 
 import com.akademia.educators_back.mapper.AddProblemMapper;
 import com.akademia.educators_back.service.Problem;
+import com.akademia.educators_back.to.ProblemTo;
 import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.mapper.UpdateProblemMapper;
 import com.akademia.educators_back.repository.ProblemRepository;
-import com.akademia.educators_back.to.ProblemTo;
-import com.akademia.educators_back.valicators.ProblemValidator;
 import lombok.AllArgsConstructor;
+import com.akademia.educators_back.valicators.ProblemValidator;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
