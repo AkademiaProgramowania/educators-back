@@ -16,7 +16,7 @@ public class CommentValidator {
     private CommentRepository commentRepository;
 
     public void commentExists(CommentTo commentTo) {
-        if (!commentRepository.commentExists(commentTo.getAnswer())) {
+        if (!commentRepository.existsByAnswer(commentTo.getAnswer())) {
             throw new CommentDoesNotExistException(commentTo.getAnswer());
         }
     }

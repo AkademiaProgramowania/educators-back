@@ -19,24 +19,17 @@ public class ProblemValidator {
     private final int MAX_QUESTION_LENGTH = 1000;
     private ProblemRepository problemRepository;
 
-    //TODO RESOLVED nie ma konstruktora więc się wywali przy wywołaniu -
-
-    //TODO RESOLVED po co to zwracać, nie lepiej boolean albo void?
     public void categoryExistCheck(ProblemTo problemTo) {
         if (!problemRepository.existsByCategoryEntity_CategoryName(problemTo.getCategoryEntity().getCategoryName())) {
             throw new CategoryDoesNotExistException(problemTo.getCategoryEntity().getCategoryName());
         }
     }
 
-    //TODO RESOLVED po co to zwracać, nie lepiej boolean?
     public void questionExistCheck(ProblemTo problemTo) {
         if (!problemRepository.existsByQuestion(problemTo.getQuestion())) {
             throw new ProblemAlreadyExistException(problemTo.getQuestion());
         }
     }
-
-
-    //TODO RESOLVED ta metoda nie musi nic zwracać
 
     public void titleLengthCheck(ProblemTo problemTo) {
         int titleLength = problemTo.getTitle().length();
@@ -52,17 +45,4 @@ public class ProblemValidator {
         }
     }
 }
-
-    //TODO RESOLVED dwa "ing" obok siebie trochę dziwnie się czyta,
-    // proponuję problemCategoryCheck lub nawet categoryCheck -
-    // w paramter metody wsadzamy problemTo więc można się
-    // łatwo domyśleć że problemu dotyczy, dodatkowo wywołujemy ProblemValidator
-    // w aktualnej formie mamy w jednej linijce aż 3 razy problem (w serwisie ProblemServiceImpl)
-    // problemValidator.problemCategoryExistingChecking(problemTo);
-    // ta sama uwaga dotyczy wszystkich metod tutaj, spróbuj uprościć :)
-
-    //TODO RESOLVED Tego typu "zahardkodowane" wartości lepiej wyciągnąć do stałych pól chociaż, może być w tym serwisie póki co.
-    // i problemTo.getTitle().length() też bym wyciągnął do zmiennej ale już w samej metodzie
-
-
 

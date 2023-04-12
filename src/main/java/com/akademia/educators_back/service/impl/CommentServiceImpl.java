@@ -7,6 +7,8 @@ import com.akademia.educators_back.exception.CommentDoesNotExistException;
 import com.akademia.educators_back.mapper.CommentMapper;
 import com.akademia.educators_back.repository.CommentRepository;
 import com.akademia.educators_back.valicators.CommentValidator;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,28 +16,29 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class CommentServiceImpl implements Comment {
-
+    @Autowired
     private CommentRepository commentRepository;
     private CommentMapper commentMapper;
-    private CommentEntity commentEntity;
 
     private CommentValidator commentValidator;
 
     public void addCommentToDB(CommentTo commentTo) {
-        commentEntity = commentMapper.toCommentEntity(commentTo);
+        //validationMethod(commentTo);
+        CommentEntity commentEntity = commentMapper.toCommentEntity(commentTo);
         commentRepository.save(commentEntity);
     }
 
     @Override
     public void deleteteCommentFromDB(CommentTo commentTo) {
-        commentEntity = commentMapper.toCommentEntity(commentTo);
+        CommentEntity commentEntity = commentMapper.toCommentEntity(commentTo);
         commentRepository.delete(commentEntity);
     }
 
 
     public void updateComment(CommentTo commentTo) {
-        commentEntity = commentMapper.toCommentEntity(commentTo);
+        CommentEntity commentEntity = commentMapper.toCommentEntity(commentTo);
         commentEntity = commentRepository.findById(commentTo.getId()).orElseThrow(() -> new CommentDoesNotExistException("Comment does not exist"));
         commentEntity.setAnswer(commentTo.getAnswer());
         commentRepository.save(commentEntity);
