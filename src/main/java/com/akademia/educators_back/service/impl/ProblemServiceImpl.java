@@ -2,6 +2,7 @@ package com.akademia.educators_back.service.impl;
 
 import com.akademia.educators_back.mapper.ProblemMapper;
 import com.akademia.educators_back.service.Problem;
+import com.akademia.educators_back.to.NewProblemTo;
 import com.akademia.educators_back.to.ProblemTo;
 import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.exception.ProblemDoesNotExistException;
@@ -64,11 +65,17 @@ public class ProblemServiceImpl implements Problem {
     }
 
     public void validationMethod(ProblemTo problemTo){
-        System.out.println("validators method");
         problemValidator.titleLengthCheck(problemTo);
         problemValidator.questionLengthCheck(problemTo);
         problemValidator.categoryExistCheck(problemTo);
         problemValidator.questionExistCheck(problemTo);
+    }
+
+    public void validationMethod(NewProblemTo newProblemTo){
+        problemValidator.titleLengthCheck(newProblemTo);
+        problemValidator.questionLengthCheck(newProblemTo);
+        problemValidator.categoryExistCheck(newProblemTo);
+        problemValidator.questionExistCheck(newProblemTo);
     }
 
 

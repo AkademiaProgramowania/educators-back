@@ -5,6 +5,7 @@ import com.akademia.educators_back.exception.ProblemAlreadyExistException;
 import com.akademia.educators_back.exception.TextLengthException;
 import com.akademia.educators_back.mapper.UpdateProblemMapper;
 import com.akademia.educators_back.repository.ProblemRepository;
+import com.akademia.educators_back.to.NewProblemTo;
 import com.akademia.educators_back.to.ProblemTo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,32 @@ public class ProblemValidator {
     private final int MIN_QUESTION_LENGTH = 10;
     private final int MAX_QUESTION_LENGTH = 1000;
     private ProblemRepository problemRepository;
+
+    public void categoryExistCheck(NewProblemTo newProblemTo) {
+        if (!problemRepository.existsByCategoryEntity_CategoryName(newProblemTo.getCategoryEntity().getCategoryName())) {
+            throw new CategoryDoesNotExistException(newProblemTo.getCategoryEntity().getCategoryName());
+        }
+    }
+
+    public void questionExistCheck(NewProblemTo newProblemTo) {
+        if (!problemRepository.existsByQuestion(newProblemTo.getQuestion())) {
+            throw new ProblemAlreadyExistException(newProblemTo.getQuestion());
+        }
+    }
+
+    public void titleLengthCheck(NewProblemTo newProblemTo) {
+        int titleLength = newProblemTo.getTitle().length();
+        if (titleLength < MIN_TITLE_LENGTH || titleLength > MAX_TITLE_LENGTH) {
+            throw new TextLengthException("Provided title has incorrect length");
+        }
+    }
+
+    public void questionLengthCheck(NewProblemTo newProblemTo) {
+        int questionLength = newProblemTo.getQuestion().length();
+        if (questionLength < MIN_QUESTION_LENGTH || questionLength > MAX_QUESTION_LENGTH) {
+            throw new TextLengthException("Provided question has incorrect length");
+        }
+    }
 
     public void categoryExistCheck(ProblemTo problemTo) {
         if (!problemRepository.existsByCategoryEntity_CategoryName(problemTo.getCategoryEntity().getCategoryName())) {
