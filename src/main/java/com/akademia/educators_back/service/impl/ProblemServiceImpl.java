@@ -24,14 +24,14 @@ public class ProblemServiceImpl implements Problem {
     private ProblemValidator problemValidator;
 
     @Override
-    public void addProblemToDB(ProblemTo problemTo) {
-        validationMethod(problemTo);
-        ProblemEntity problemEntity = problemMapper.toProblemEntity(problemTo);
+    public void addProblem(NewProblemTo newProblemTo) {
+        validationMethod(newProblemTo);
+        ProblemEntity problemEntity = problemMapper.toProblemEntity(newProblemTo);
         problemRepository.save(problemEntity);
     }
 
     @Override
-    public void deleteProblemFromDB(ProblemTo problemTo) {
+    public void deleteProblem(ProblemTo problemTo) {
         validationMethod(problemTo);
         ProblemEntity problemEntity = updateProblemMapper.toUpdateProblemEntity(problemTo);
         problemRepository.delete(problemEntity);

@@ -1,11 +1,10 @@
 package com.akademia.educators_back.controller;
 
-import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.service.impl.ProblemServiceImpl;
+import com.akademia.educators_back.to.NewProblemTo;
 import com.akademia.educators_back.to.ProblemTo;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +37,7 @@ public class ProblemController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void createProblem(@RequestBody ProblemTo problemTo){
-        problemService.addProblemToDB(problemTo);
+    void createProblem(@RequestBody NewProblemTo newProblemTo){
+        problemService.addProblem(newProblemTo);
     }
 }
