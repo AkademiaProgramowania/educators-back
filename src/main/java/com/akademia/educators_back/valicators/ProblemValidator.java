@@ -3,7 +3,6 @@ package com.akademia.educators_back.valicators;
 import com.akademia.educators_back.exception.CategoryDoesNotExistException;
 import com.akademia.educators_back.exception.ProblemAlreadyExistException;
 import com.akademia.educators_back.exception.TextLengthException;
-import com.akademia.educators_back.mapper.UpdateProblemMapper;
 import com.akademia.educators_back.repository.ProblemRepository;
 import com.akademia.educators_back.to.NewProblemTo;
 import com.akademia.educators_back.to.ProblemTo;

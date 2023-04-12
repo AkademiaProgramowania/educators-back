@@ -6,7 +6,6 @@ import com.akademia.educators_back.to.NewProblemTo;
 import com.akademia.educators_back.to.ProblemTo;
 import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.exception.ProblemDoesNotExistException;
-import com.akademia.educators_back.mapper.UpdateProblemMapper;
 import com.akademia.educators_back.repository.ProblemRepository;
 import lombok.AllArgsConstructor;
 import com.akademia.educators_back.valicators.ProblemValidator;
@@ -19,7 +18,6 @@ import java.util.List;
 @AllArgsConstructor
 public class ProblemServiceImpl implements Problem {
     private ProblemRepository problemRepository;
-    private UpdateProblemMapper updateProblemMapper;
     private ProblemMapper problemMapper;
     private ProblemValidator problemValidator;
 
@@ -33,7 +31,7 @@ public class ProblemServiceImpl implements Problem {
     @Override
     public void deleteProblem(ProblemTo problemTo) {
         validationMethod(problemTo);
-        ProblemEntity problemEntity = updateProblemMapper.toUpdateProblemEntity(problemTo);
+        ProblemEntity problemEntity = problemMapper.toProblemEntity(problemTo);
         problemRepository.delete(problemEntity);
     }
 
