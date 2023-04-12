@@ -1,6 +1,6 @@
 package com.akademia.educators_back.service.impl;
 
-import com.akademia.educators_back.mapper.AddProblemMapper;
+import com.akademia.educators_back.mapper.ProblemMapper;
 import com.akademia.educators_back.service.Problem;
 import com.akademia.educators_back.to.ProblemTo;
 import com.akademia.educators_back.entity.ProblemEntity;
@@ -19,13 +19,13 @@ import java.util.List;
 public class ProblemServiceImpl implements Problem {
     private ProblemRepository problemRepository;
     private UpdateProblemMapper updateProblemMapper;
-    private AddProblemMapper addProblemMapper;
+    private ProblemMapper problemMapper;
     private ProblemValidator problemValidator;
 
     @Override
     public void addProblemToDB(ProblemTo problemTo) {
         validationMethod(problemTo);
-        ProblemEntity problemEntity = addProblemMapper.toAddProblemEntity(problemTo);
+        ProblemEntity problemEntity = problemMapper.toProblemEntity(problemTo);
         problemRepository.save(problemEntity);
     }
 
@@ -52,7 +52,7 @@ public class ProblemServiceImpl implements Problem {
         List<ProblemTo> problemsTo = new ArrayList<>();
         List<ProblemEntity> problemsEntity = problemRepository.findAll();
         for (ProblemEntity problem : problemsEntity){
-            problemsTo.add(addProblemMapper.toProblemAddTO(problem));
+            problemsTo.add(problemMapper.toProblemTO(problem));
         }
         return problemsTo;
     }
@@ -60,7 +60,7 @@ public class ProblemServiceImpl implements Problem {
     @Override
     public ProblemTo getProblemById(Long id) {
         ProblemEntity problemEntity = problemRepository.findById(id).orElseThrow(()->new ProblemDoesNotExistException(id));
-        return addProblemMapper.toProblemAddTO(problemEntity);
+        return problemMapper.toProblemTO(problemEntity);
     }
 
     public void validationMethod(ProblemTo problemTo){
