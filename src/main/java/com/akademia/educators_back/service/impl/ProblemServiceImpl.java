@@ -23,21 +23,21 @@ public class ProblemServiceImpl implements Problem {
 
     @Override
     public void addProblem(NewProblemTo newProblemTo) {
-        validationMethod(newProblemTo);
+        problemValidator.validationMethod(newProblemTo);
         ProblemEntity problemEntity = problemMapper.toProblemEntity(newProblemTo);
         problemRepository.save(problemEntity);
     }
 
     @Override
     public void deleteProblem(ProblemTo problemTo) {
-        validationMethod(problemTo);
+        problemValidator.validationMethod(problemTo);
         ProblemEntity problemEntity = problemMapper.toProblemEntity(problemTo);
         problemRepository.delete(problemEntity);
     }
 
     @Override
     public void updateProblem(ProblemTo problemTo) {
-        validationMethod(problemTo);
+        problemValidator.validationMethod(problemTo);
         ProblemEntity problemEntity;
         problemEntity = problemRepository.findById(problemTo.getId()).orElseThrow(()->new ProblemDoesNotExistException(problemTo.getId()));
         problemEntity.setQuestion(problemTo.getQuestion());
@@ -61,20 +61,4 @@ public class ProblemServiceImpl implements Problem {
         ProblemEntity problemEntity = problemRepository.findById(id).orElseThrow(()->new ProblemDoesNotExistException(id));
         return problemMapper.toProblemTO(problemEntity);
     }
-
-    public void validationMethod(ProblemTo problemTo){
-        problemValidator.titleLengthCheck(problemTo);
-        problemValidator.questionLengthCheck(problemTo);
-        problemValidator.categoryExistCheck(problemTo);
-        problemValidator.questionExistCheck(problemTo);
-    }
-
-    public void validationMethod(NewProblemTo newProblemTo){
-        problemValidator.titleLengthCheck(newProblemTo);
-        problemValidator.questionLengthCheck(newProblemTo);
-        problemValidator.categoryExistCheck(newProblemTo);
-        problemValidator.questionExistCheck(newProblemTo);
-    }
-
-
 }

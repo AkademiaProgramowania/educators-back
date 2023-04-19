@@ -70,6 +70,20 @@ public class ProblemValidator {
             throw new TextLengthException("Provided question has incorrect length");
         }
     }
+
+    public void validationMethod(ProblemTo problemTo){
+        titleLengthCheck(problemTo);
+        questionLengthCheck(problemTo);
+        categoryExistCheck(problemTo);
+        questionExistCheck(problemTo);
+    }
+
+    public void validationMethod(NewProblemTo newProblemTo){
+        titleLengthCheck(newProblemTo);
+        questionLengthCheck(newProblemTo);
+        categoryExistCheck(newProblemTo);
+        questionExistCheck(newProblemTo);
+    }
 }
 
 
