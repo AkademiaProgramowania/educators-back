@@ -20,13 +20,13 @@ public class ProblemValidator {
     private ProblemRepository problemRepository;
 
     private void categoryExistCheck(NewProblemTo newProblemTo) {
-        if (!problemRepository.existsByCategoryEntity_CategoryName(newProblemTo.getCategoryEntity().getCategoryName())) {
+        if (problemRepository.existsByCategoryEntity_CategoryName(newProblemTo.getCategoryEntity().getCategoryName())) {
             throw new CategoryDoesNotExistException(newProblemTo.getCategoryEntity().getCategoryName());
         }
     }
 
     private void questionExistCheck(NewProblemTo newProblemTo) {
-        if (!problemRepository.existsByQuestion(newProblemTo.getQuestion())) {
+        if (problemRepository.existsByQuestion(newProblemTo.getQuestion())) {
             throw new ProblemAlreadyExistException(newProblemTo.getQuestion());
         }
     }
@@ -46,13 +46,13 @@ public class ProblemValidator {
     }
 
     private void categoryExistCheck(ProblemTo problemTo) {
-        if (!problemRepository.existsByCategoryEntity_CategoryName(problemTo.getCategoryEntity().getCategoryName())) {
+        if (problemRepository.existsByCategoryEntity_CategoryName(problemTo.getCategoryEntity().getCategoryName())) {
             throw new CategoryDoesNotExistException(problemTo.getCategoryEntity().getCategoryName());
         }
     }
 
     private void questionExistCheck(ProblemTo problemTo) {
-        if (!problemRepository.existsByQuestion(problemTo.getQuestion())) {
+        if (problemRepository.existsByQuestion(problemTo.getQuestion())) {
             throw new ProblemAlreadyExistException(problemTo.getQuestion());
         }
     }
@@ -74,14 +74,14 @@ public class ProblemValidator {
     public void validationMethod(ProblemTo problemTo){
         titleLengthCheck(problemTo);
         questionLengthCheck(problemTo);
-        categoryExistCheck(problemTo);
+//        categoryExistCheck(problemTo);
         questionExistCheck(problemTo);
     }
 
     public void validationMethod(NewProblemTo newProblemTo){
         titleLengthCheck(newProblemTo);
         questionLengthCheck(newProblemTo);
-        categoryExistCheck(newProblemTo);
+//        categoryExistCheck(newProblemTo);
         questionExistCheck(newProblemTo);
     }
 }
