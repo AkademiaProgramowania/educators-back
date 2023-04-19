@@ -8,9 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProblemMapper {
 
-    ProblemTo problemTo = new ProblemTo();
-    NewProblemTo newProblemTo = new NewProblemTo();
-
 
     public ProblemEntity toProblemEntity(NewProblemTo newProblemTo){
         ProblemEntity problemEntity = new ProblemEntity();
@@ -31,6 +28,9 @@ public class ProblemMapper {
 
     public ProblemTo toProblemTO(ProblemEntity problemEntity){
         ProblemTo problemTo = new ProblemTo();
+        if(problemEntity != null){
+            problemTo.setId(problemEntity.getId());
+        }
         problemTo.setTitle(problemEntity.getTitle());
         problemTo.setQuestion(problemEntity.getQuestion());
         return problemTo;
