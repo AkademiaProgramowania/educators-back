@@ -20,8 +20,8 @@ public class ProblemValidator {
     private ProblemRepository problemRepository;
 
     private void categoryExistCheck(NewProblemTo newProblemTo) {
-        if (problemRepository.existsByCategoryEntity_CategoryName(newProblemTo.getCategoryEntity().getCategoryName())) {
-            throw new CategoryDoesNotExistException(newProblemTo.getCategoryEntity().getCategoryName());
+        if (problemRepository.existsByCategoryEntity_CategoryName(newProblemTo.getCategoryName())) {
+            throw new CategoryDoesNotExistException(newProblemTo.getCategoryName());
         }
     }
 

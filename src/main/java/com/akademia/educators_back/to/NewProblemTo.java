@@ -13,5 +13,5 @@ public class NewProblemTo {
     private String title;
     private String question;
     private List<Long> commentsToId;
-    private CategoryEntity categoryEntity;
+    private String categoryName;
 }
