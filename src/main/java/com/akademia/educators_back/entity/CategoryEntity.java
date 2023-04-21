@@ -17,6 +17,6 @@ public class CategoryEntity {
     private Long id;
     private String categoryName;
 
-    @OneToMany(mappedBy = "categoryEntity")
-    private List<ProblemEntity> problems;
+//    @OneToMany(mappedBy = "categoryEntity")
+//    private List<ProblemEntity> problems;
 }
