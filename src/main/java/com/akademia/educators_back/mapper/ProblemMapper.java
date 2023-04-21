@@ -16,6 +16,14 @@ public class ProblemMapper {
         return problemEntity;
     }
 
+    public NewProblemTo toNewProblemTO(ProblemEntity problemEntity){
+        NewProblemTo newProblemTo = new NewProblemTo();
+        newProblemTo.setTitle(problemEntity.getTitle());
+        newProblemTo.setQuestion(problemEntity.getQuestion());
+        newProblemTo.setCategoryName(problemEntity.getCategoryEntity().getCategoryName());
+        return newProblemTo;
+    }
+
     public ProblemEntity toProblemEntity(ProblemTo problemTo){
         ProblemEntity problemEntity = new ProblemEntity();
         if(problemTo != null){
@@ -33,6 +41,7 @@ public class ProblemMapper {
         }
         problemTo.setTitle(problemEntity.getTitle());
         problemTo.setQuestion(problemEntity.getQuestion());
+        problemEntity.setCategoryEntity(problemEntity.getCategoryEntity());
         return problemTo;
     }
 }

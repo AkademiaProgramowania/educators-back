@@ -20,7 +20,7 @@ public class ProblemValidator {
     private ProblemRepository problemRepository;
 
     private void categoryExistCheck(NewProblemTo newProblemTo) {
-        if (problemRepository.existsByCategoryEntity_CategoryName(newProblemTo.getCategoryName())) {
+        if (!problemRepository.existsByCategoryEntity_CategoryName(newProblemTo.getCategoryName())) {
             throw new CategoryDoesNotExistException(newProblemTo.getCategoryName());
         }
     }
@@ -46,7 +46,7 @@ public class ProblemValidator {
     }
 
     private void categoryExistCheck(ProblemTo problemTo) {
-        if (problemRepository.existsByCategoryEntity_CategoryName(problemTo.getCategoryEntity().getCategoryName())) {
+        if (!problemRepository.existsByCategoryEntity_CategoryName(problemTo.getCategoryEntity().getCategoryName())) {
             throw new CategoryDoesNotExistException(problemTo.getCategoryEntity().getCategoryName());
         }
     }
@@ -70,18 +70,18 @@ public class ProblemValidator {
             throw new TextLengthException("Provided question has incorrect length");
         }
     }
-
+//TODO Rozbieżnośc pomiędzy metodami categoryExistCheck
     public void validationMethod(ProblemTo problemTo){
         titleLengthCheck(problemTo);
         questionLengthCheck(problemTo);
-//        categoryExistCheck(problemTo);
+        categoryExistCheck(problemTo);
         questionExistCheck(problemTo);
     }
 
     public void validationMethod(NewProblemTo newProblemTo){
         titleLengthCheck(newProblemTo);
         questionLengthCheck(newProblemTo);
-//        categoryExistCheck(newProblemTo);
+        categoryExistCheck(newProblemTo);
         questionExistCheck(newProblemTo);
     }
 }
