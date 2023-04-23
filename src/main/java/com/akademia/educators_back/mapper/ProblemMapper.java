@@ -1,11 +1,28 @@
 package com.akademia.educators_back.mapper;
 
-import com.akademia.educators_back.to.ProblemTo;
 import com.akademia.educators_back.entity.ProblemEntity;
+import com.akademia.educators_back.to.NewProblemTo;
+import com.akademia.educators_back.to.ProblemTo;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ProblemMapper {
+
+
+    public ProblemEntity toProblemEntity(NewProblemTo newProblemTo){
+        ProblemEntity problemEntity = new ProblemEntity();
+        problemEntity.setTitle(newProblemTo.getTitle());
+        problemEntity.setQuestion(newProblemTo.getQuestion());
+        return problemEntity;
+    }
+
+    public NewProblemTo toNewProblemTO(ProblemEntity problemEntity){
+        NewProblemTo newProblemTo = new NewProblemTo();
+        newProblemTo.setTitle(problemEntity.getTitle());
+        newProblemTo.setQuestion(problemEntity.getQuestion());
+        newProblemTo.setCategoryName(problemEntity.getCategoryEntity().getCategoryName());
+        return newProblemTo;
+    }
 
     public ProblemEntity toProblemEntity(ProblemTo problemTo){
         ProblemEntity problemEntity = new ProblemEntity();
@@ -24,6 +41,7 @@ public class ProblemMapper {
         }
         problemTo.setTitle(problemEntity.getTitle());
         problemTo.setQuestion(problemEntity.getQuestion());
+        problemTo.setCategoryEntity(problemEntity.getCategoryEntity());
         return problemTo;
     }
 }
