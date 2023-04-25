@@ -4,6 +4,7 @@ import com.akademia.educators_back.entity.CategoryEntity;
 import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.mapper.ProblemMapper;
 import com.akademia.educators_back.to.NewProblemTo;
+import com.akademia.educators_back.to.ProblemTo;
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class ProblemMapperTest {
     private ProblemMapper problemMapper;
 
     @Test
-    void newProblemTotoProblemEntity() {
+    void toProblemEntityWithNewProblemToArgument() {
         NewProblemTo newProblemTo = new NewProblemTo();
         newProblemTo.setTitle(TITLE);
         newProblemTo.setQuestion(QUESTION);
@@ -50,10 +51,34 @@ class ProblemMapperTest {
     }
 
     @Test
-    void testToProblemEntity() {
+    void toProblemEntityWithProblemToArgument() {
+        ProblemTo problemTo = new ProblemTo();
+        problemTo.setId(1L);
+        problemTo.setTitle(TITLE);
+        problemTo.setQuestion(QUESTION);
+
+        ProblemEntity problemEntity = problemMapper.toProblemEntity(problemTo);
+
+        assertEquals(Long.valueOf(1L), problemEntity.getId());
+        assertEquals(TITLE, problemEntity.getTitle());
+        assertEquals(QUESTION, problemEntity.getQuestion());
     }
 
     @Test
     void toProblemTO() {
+        ProblemEntity problemEntity = new ProblemEntity();
+        problemEntity.setId(1L);
+        problemEntity.setTitle(TITLE);
+        problemEntity.setQuestion(QUESTION);
+        CategoryEntity categoryEntity = new CategoryEntity();
+        categoryEntity.setCategoryName(CATEGORY_NAME);
+        problemEntity.setCategoryEntity(categoryEntity);
+
+        ProblemTo problemTo = problemMapper.toProblemTO(problemEntity);
+
+        assertEquals(Long.valueOf(1L), problemTo.getId());
+        assertEquals(TITLE, problemTo.getTitle());
+        assertEquals(QUESTION, problemTo.getQuestion());
+        assertEquals(categoryEntity, problemTo.getCategoryEntity());
     }
 }
