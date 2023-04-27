@@ -81,4 +81,12 @@ class ProblemMapperTest {
         assertEquals(QUESTION, problemTo.getQuestion());
         assertEquals(categoryEntity, problemTo.getCategoryEntity());
     }
+//    @Test
+//    void toNewProblemTOWhenProblemEntityIsNull() {
+//        ProblemEntity problemEntity = null;
+//
+//        NewProblemTo newProblemTo = problemMapper.toNewProblemTO(problemEntity);
+//
+//        assertNull(newProblemTo);
+//    }
 }
