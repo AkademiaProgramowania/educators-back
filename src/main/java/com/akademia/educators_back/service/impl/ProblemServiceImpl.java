@@ -23,7 +23,7 @@ public class ProblemServiceImpl implements Problem {
 
     @Override
     public void addProblem(NewProblemTo newProblemTo) {
-        problemValidator.validationMethod(newProblemTo);
+        problemValidator.validateNewProblem(newProblemTo);
         //TODO - sprawdzić czy podana categoria jako string istnieje
         // zrobić to w metodzie validacyjnej
         ProblemEntity problemEntity = problemMapper.toProblemEntity(newProblemTo);
@@ -32,14 +32,14 @@ public class ProblemServiceImpl implements Problem {
 
     @Override
     public void deleteProblem(ProblemTo problemTo) {
-        problemValidator.validationMethod(problemTo);
+        problemValidator.validateExistingProblem(problemTo);
         ProblemEntity problemEntity = problemMapper.toProblemEntity(problemTo);
         problemRepository.delete(problemEntity);
     }
 
     @Override
     public void updateProblem(ProblemTo problemTo) {
-        problemValidator.validationMethod(problemTo);
+        problemValidator.validateExistingProblem(problemTo);
         ProblemEntity problemEntity;
         problemEntity = problemRepository.findById(problemTo.getId()).orElseThrow(()->new ProblemDoesNotExistException(problemTo.getId()));
         problemEntity.setQuestion(problemTo.getQuestion());

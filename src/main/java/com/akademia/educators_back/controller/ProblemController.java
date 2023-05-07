@@ -43,7 +43,7 @@ public class ProblemController {
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void createProblem(@RequestBody ProblemTo problemTo){
+    void changeExistingProblem(@RequestBody ProblemTo problemTo){
         problemService.updateProblem(problemTo);
     }
 }

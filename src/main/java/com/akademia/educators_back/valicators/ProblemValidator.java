@@ -71,14 +71,14 @@ public class ProblemValidator {
         }
     }
 //TODO Rozbieżnośc pomiędzy metodami categoryExistCheck
-    public void validationMethod(ProblemTo problemTo){
+    public void validateExistingProblem(ProblemTo problemTo){
         titleLengthCheck(problemTo);
         questionLengthCheck(problemTo);
         categoryExistCheck(problemTo);
         questionExistCheck(problemTo);
     }
 
-    public void validationMethod(NewProblemTo newProblemTo){
+    public void validateNewProblem(NewProblemTo newProblemTo){
         titleLengthCheck(newProblemTo);
         questionLengthCheck(newProblemTo);
         categoryExistCheck(newProblemTo);
