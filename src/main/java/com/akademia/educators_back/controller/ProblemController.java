@@ -40,4 +40,10 @@ public class ProblemController {
     void createProblem(@RequestBody NewProblemTo newProblemTo){
         problemService.addProblem(newProblemTo);
     }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    void createProblem(@RequestBody ProblemTo problemTo){
+        problemService.updateProblem(problemTo);
+    }
 }
