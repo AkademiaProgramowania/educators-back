@@ -2,11 +2,8 @@ package com.akademia.educators_back.mapper;
 
 import com.akademia.educators_back.entity.CategoryEntity;
 import com.akademia.educators_back.entity.ProblemEntity;
-import com.akademia.educators_back.mapper.ProblemMapper;
 import com.akademia.educators_back.to.NewProblemTo;
 import com.akademia.educators_back.to.ProblemTo;
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -66,6 +63,9 @@ class ProblemMapperTest {
 
     @Test
     void toProblemTO() {
+        generateProblemTo().id(2L)
+                .title("faf")
+                .build();
         ProblemEntity problemEntity = new ProblemEntity();
         problemEntity.setId(1L);
         problemEntity.setTitle(TITLE);
@@ -81,7 +81,11 @@ class ProblemMapperTest {
         assertEquals(QUESTION, problemTo.getQuestion());
         assertEquals(categoryEntity, problemTo.getCategoryEntity());
     }
-//    @Test
+
+    private ProblemTo.ProblemToBuilder generateProblemTo(){
+        return ProblemTo.builder();
+    }
+
 //    void toNewProblemTOWhenProblemEntityIsNull() {
 //        ProblemEntity problemEntity = null;
 //
