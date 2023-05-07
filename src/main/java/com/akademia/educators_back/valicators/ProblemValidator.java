@@ -19,6 +19,20 @@ public class ProblemValidator {
     private final int MAX_QUESTION_LENGTH = 1000;
     private ProblemRepository problemRepository;
 
+    //TODO Rozbieżnośc pomiędzy metodami categoryExistCheck
+    public void validateExistingProblem(ProblemTo problemTo){
+        titleLengthCheck(problemTo);
+        questionLengthCheck(problemTo);
+        categoryExistCheck(problemTo);
+        questionExistCheck(problemTo);
+    }
+
+    public void validateNewProblem(NewProblemTo newProblemTo){
+        titleLengthCheck(newProblemTo);
+        questionLengthCheck(newProblemTo);
+        categoryExistCheck(newProblemTo);
+        questionExistCheck(newProblemTo);
+    }
     private void categoryExistCheck(NewProblemTo newProblemTo) {
         if (!problemRepository.existsByCategoryEntity_CategoryName(newProblemTo.getCategoryName())) {
             throw new CategoryDoesNotExistException(newProblemTo.getCategoryName());
@@ -69,20 +83,6 @@ public class ProblemValidator {
         if (questionLength < MIN_QUESTION_LENGTH || questionLength > MAX_QUESTION_LENGTH) {
             throw new TextLengthException("Provided question has incorrect length");
         }
-    }
-//TODO Rozbieżnośc pomiędzy metodami categoryExistCheck
-    public void validateExistingProblem(ProblemTo problemTo){
-        titleLengthCheck(problemTo);
-        questionLengthCheck(problemTo);
-        categoryExistCheck(problemTo);
-        questionExistCheck(problemTo);
-    }
-
-    public void validateNewProblem(NewProblemTo newProblemTo){
-        titleLengthCheck(newProblemTo);
-        questionLengthCheck(newProblemTo);
-        categoryExistCheck(newProblemTo);
-        questionExistCheck(newProblemTo);
     }
 }
 
