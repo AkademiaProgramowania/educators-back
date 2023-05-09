@@ -20,7 +20,7 @@ class ProblemMapperTest {
     private ProblemMapper problemMapper;
 
     @Test
-    void shouldMapToEntityWithProperValues() {
+    void shouldMapToEntityWithProperNewProblemToValues() {
         //when
         ProblemEntity problemEntity = problemMapper.toProblemEntity(generateNewProblemTo());
 
@@ -29,7 +29,7 @@ class ProblemMapperTest {
         assertEquals(QUESTION, problemEntity.getQuestion());
     }
     @Test
-    void shouldMapToNewProblemTOWithProperValues() {
+    void shouldMapToNewProblemTOWithProperProblemEntityValues() {
         //given
         ProblemEntity problemEntity = generateProblemEntity();
         CategoryEntity categoryEntity = generateCategoryEntity();
@@ -45,7 +45,7 @@ class ProblemMapperTest {
     }
 
     @Test
-    void shouldMapToProblemEntityWithProperValues() {
+    void shouldMapToProblemEntityWithProperProblemToValues() {
         //when
         ProblemEntity problemEntity = problemMapper.toProblemEntity(generateProblemTo());
 
@@ -56,7 +56,7 @@ class ProblemMapperTest {
     }
 
     @Test
-    void shouldMapToProblemToWithProperValues() {
+    void shouldMapToProblemToWithProperProblemEntityValues() {
         //given
         ProblemEntity problemEntity = generateProblemEntity();
         CategoryEntity categoryEntity = generateCategoryEntity();
