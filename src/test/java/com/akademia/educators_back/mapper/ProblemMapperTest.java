@@ -20,7 +20,7 @@ class ProblemMapperTest {
     private ProblemMapper problemMapper;
 
     @Test
-    void toProblemEntityWithNewProblemToArgument() {
+    void shouldMapToEntityWithProperValues() {
         //when
         ProblemEntity problemEntity = problemMapper.toProblemEntity(generateNewProblemTo());
 
@@ -28,25 +28,24 @@ class ProblemMapperTest {
         assertEquals(TITLE, problemEntity.getTitle());
         assertEquals(QUESTION, problemEntity.getQuestion());
     }
-//TODO czy potrzebny jest tutaj test sprawdzający co się stanie jak posa się w Entity id
     @Test
-    void toNewProblemTO() {
-        ProblemEntity problemEntity = new ProblemEntity();
-        problemEntity.setTitle(TITLE);
-        problemEntity.setQuestion(QUESTION);
-        CategoryEntity categoryEntity = new CategoryEntity();
-        categoryEntity.setCategoryName(CATEGORY_NAME);
+    void shouldMapToNewProblemTOWithProperValues() {
+        //given
+        ProblemEntity problemEntity = generateProblemEntity();
+        CategoryEntity categoryEntity = generateCategoryEntity();
         problemEntity.setCategoryEntity(categoryEntity);
 
+        //when
         NewProblemTo newProblemTo = problemMapper.toNewProblemTO(problemEntity);
 
+        //then
         assertEquals(TITLE, newProblemTo.getTitle());
         assertEquals(QUESTION, newProblemTo.getQuestion());
         assertEquals(CATEGORY_NAME, newProblemTo.getCategoryName());
     }
 
     @Test
-    void toProblemEntityWithProblemToArgument() {
+    void shouldMapToProblemEntityWithProperValues() {
         //when
         ProblemEntity problemEntity = problemMapper.toProblemEntity(generateProblemTo());
 
@@ -57,17 +56,16 @@ class ProblemMapperTest {
     }
 
     @Test
-    void toProblemTO() {
-        ProblemEntity problemEntity = new ProblemEntity();
-        problemEntity.setId(1L);
-        problemEntity.setTitle(TITLE);
-        problemEntity.setQuestion(QUESTION);
-        CategoryEntity categoryEntity = new CategoryEntity();
-        categoryEntity.setCategoryName(CATEGORY_NAME);
+    void shouldMapToProblemToWithProperValues() {
+        //given
+        ProblemEntity problemEntity = generateProblemEntity();
+        CategoryEntity categoryEntity = generateCategoryEntity();
         problemEntity.setCategoryEntity(categoryEntity);
 
-        ProblemTo problemTo = problemMapper.toProblemTO(generateProblemEntity());
+        //when
+        ProblemTo problemTo = problemMapper.toProblemTO(problemEntity);
 
+        //then
         assertEquals(Long.valueOf(1L), problemTo.getId());
         assertEquals(TITLE, problemTo.getTitle());
         assertEquals(QUESTION, problemTo.getQuestion());
@@ -103,11 +101,4 @@ class ProblemMapperTest {
         categoryEntity.setCategoryName(CATEGORY_NAME);
         return categoryEntity;
     }
-//    void toNewProblemTOWhenProblemEntityIsNull() {
-//        ProblemEntity problemEntity = null;
-//
-//        NewProblemTo newProblemTo = problemMapper.toNewProblemTO(problemEntity);
-//
-//        assertNull(newProblemTo);
-//    }
 }
