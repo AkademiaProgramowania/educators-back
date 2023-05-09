@@ -29,6 +29,7 @@ public class ProblemController {
 
     @GetMapping("/{id}")
     public ProblemTo findProblemById(@PathVariable Long id){
+        LOG.info("Request to get problem with provided id");
         ProblemTo problemTo;
         try {
             problemTo = problemService.getProblemById(id);
@@ -42,6 +43,7 @@ public class ProblemController {
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.ACCEPTED)
     void createProblem(@RequestBody NewProblemTo newProblemTo){
+        LOG.info("Request to add new problem");
         problemService.addProblem(newProblemTo);
     }
 }
