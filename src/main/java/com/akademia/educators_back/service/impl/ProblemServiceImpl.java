@@ -24,8 +24,6 @@ public class ProblemServiceImpl implements Problem {
     @Override
     public void addProblem(NewProblemTo newProblemTo) {
         problemValidator.validateNewProblem(newProblemTo);
-        //TODO - sprawdzić czy podana categoria jako string istnieje
-        // zrobić to w metodzie validacyjnej
         ProblemEntity problemEntity = problemMapper.toProblemEntity(newProblemTo);
         problemRepository.save(problemEntity);
     }
