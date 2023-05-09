@@ -70,7 +70,6 @@ public class ProblemValidator {
             throw new TextLengthException("Provided question has incorrect length");
         }
     }
-//TODO Rozbieżnośc pomiędzy metodami categoryExistCheck
     public void validationMethod(ProblemTo problemTo){
         titleLengthCheck(problemTo);
         questionLengthCheck(problemTo);
