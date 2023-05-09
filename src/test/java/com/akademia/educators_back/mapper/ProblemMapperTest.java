@@ -21,12 +21,10 @@ class ProblemMapperTest {
 
     @Test
     void toProblemEntityWithNewProblemToArgument() {
-        NewProblemTo newProblemTo = new NewProblemTo();
-        newProblemTo.setTitle(TITLE);
-        newProblemTo.setQuestion(QUESTION);
+        //when
+        ProblemEntity problemEntity = problemMapper.toProblemEntity(generateNewProblemTo());
 
-        ProblemEntity problemEntity = problemMapper.toProblemEntity(newProblemTo);
-
+        //then
         assertEquals(TITLE, problemEntity.getTitle());
         assertEquals(QUESTION, problemEntity.getQuestion());
     }
@@ -49,13 +47,10 @@ class ProblemMapperTest {
 
     @Test
     void toProblemEntityWithProblemToArgument() {
-        ProblemTo problemTo = new ProblemTo();
-        problemTo.setId(1L);
-        problemTo.setTitle(TITLE);
-        problemTo.setQuestion(QUESTION);
+        //when
+        ProblemEntity problemEntity = problemMapper.toProblemEntity(generateProblemTo());
 
-        ProblemEntity problemEntity = problemMapper.toProblemEntity(problemTo);
-
+        //then
         assertEquals(Long.valueOf(1L), problemEntity.getId());
         assertEquals(TITLE, problemEntity.getTitle());
         assertEquals(QUESTION, problemEntity.getQuestion());
@@ -63,9 +58,6 @@ class ProblemMapperTest {
 
     @Test
     void toProblemTO() {
-        generateProblemTo().id(2L)
-                .title("faf")
-                .build();
         ProblemEntity problemEntity = new ProblemEntity();
         problemEntity.setId(1L);
         problemEntity.setTitle(TITLE);
@@ -74,7 +66,7 @@ class ProblemMapperTest {
         categoryEntity.setCategoryName(CATEGORY_NAME);
         problemEntity.setCategoryEntity(categoryEntity);
 
-        ProblemTo problemTo = problemMapper.toProblemTO(problemEntity);
+        ProblemTo problemTo = problemMapper.toProblemTO(generateProblemEntity());
 
         assertEquals(Long.valueOf(1L), problemTo.getId());
         assertEquals(TITLE, problemTo.getTitle());
@@ -82,10 +74,35 @@ class ProblemMapperTest {
         assertEquals(categoryEntity, problemTo.getCategoryEntity());
     }
 
-    private ProblemTo.ProblemToBuilder generateProblemTo(){
-        return ProblemTo.builder();
+    private ProblemTo generateProblemTo(){
+        return ProblemTo.builder()
+                .id(1L)
+                .title(TITLE)
+                .question(QUESTION)
+                .build();
     }
 
+    private NewProblemTo generateNewProblemTo(){
+        return NewProblemTo.builder()
+                .title(TITLE)
+                .question(QUESTION)
+                .build();
+    }
+
+    private ProblemEntity generateProblemEntity(){
+        return ProblemEntity.builder()
+                .id(1L)
+                .title(TITLE)
+                .question(QUESTION)
+                .categoryEntity(generateCategoryEntity())
+                .build();
+    }
+
+    private CategoryEntity generateCategoryEntity(){
+        CategoryEntity categoryEntity = new CategoryEntity();
+        categoryEntity.setCategoryName(CATEGORY_NAME);
+        return categoryEntity;
+    }
 //    void toNewProblemTOWhenProblemEntityIsNull() {
 //        ProblemEntity problemEntity = null;
 //

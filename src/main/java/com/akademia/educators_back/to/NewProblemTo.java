@@ -1,13 +1,15 @@
 package com.akademia.educators_back.to;
 
 import com.akademia.educators_back.entity.CategoryEntity;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class NewProblemTo {
 
     private String title;
