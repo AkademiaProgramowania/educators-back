@@ -23,13 +23,11 @@ public class ProblemController {
 
     @GetMapping("/list")
     public ResponseEntity<List<ProblemTo>> getProblems(){
-        LOG.info("Request to get all problems");
         return ResponseEntity.ok().body(problemService.getProblems());
     }
 
     @GetMapping("/{id}")
     public ProblemTo findProblemById(@PathVariable Long id){
-        LOG.info("Request to get problem with provided id");
         ProblemTo problemTo;
         try {
             problemTo = problemService.getProblemById(id);
@@ -43,7 +41,7 @@ public class ProblemController {
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.ACCEPTED)
     void createProblem(@RequestBody NewProblemTo newProblemTo){
-        LOG.info("Request to add new problem");
+        LOG.info("Request to add a new problem has been received");
         problemService.addProblem(newProblemTo);
     }
 }

@@ -8,7 +8,7 @@ import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.repository.ProblemRepository;
 import lombok.AllArgsConstructor;
-import com.akademia.educators_back.valicators.ProblemValidator;
+import com.akademia.educators_back.valicator.ProblemValidator;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
