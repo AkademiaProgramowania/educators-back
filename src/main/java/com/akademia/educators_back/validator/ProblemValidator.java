@@ -1,4 +1,4 @@
-package com.akademia.educators_back.valicator;
+package com.akademia.educators_back.validator;
 
 import com.akademia.educators_back.exception.CategoryDoesNotExistException;
 import com.akademia.educators_back.exception.ProblemAlreadyExistException;
