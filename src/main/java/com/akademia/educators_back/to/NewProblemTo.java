@@ -10,9 +10,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class NewProblemTo {
 
     @Size(min = 3, max = 100)
