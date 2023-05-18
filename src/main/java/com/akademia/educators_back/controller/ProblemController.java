@@ -4,6 +4,7 @@ import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.service.impl.ProblemServiceImpl;
 import com.akademia.educators_back.to.NewProblemTo;
 import com.akademia.educators_back.to.ProblemTo;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,7 @@ public class ProblemController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void createProblem(@RequestBody NewProblemTo newProblemTo){
+    void createProblem(@RequestBody @Valid NewProblemTo newProblemTo){
         problemService.addProblem(newProblemTo);
     }
 }
