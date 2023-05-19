@@ -1,6 +1,7 @@
 package com.akademia.educators_back.to;
 
 import com.akademia.educators_back.entity.CategoryEntity;
+import jakarta.persistence.Column;
 import lombok.*;
 
 

@@ -38,7 +38,7 @@ public class ProblemController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void createProblem(@RequestBody NewProblemTo newProblemTo){
+    void createProblem(@RequestBody @Valid NewProblemTo newProblemTo){
         problemService.addProblem(newProblemTo);
     }
 }

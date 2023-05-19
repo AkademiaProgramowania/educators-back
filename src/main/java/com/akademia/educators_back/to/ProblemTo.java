@@ -17,7 +17,7 @@ public class ProblemTo {
     private Long id;
     @Size(min = 3, max = 100, message = "Provided title has incorrect length")
     private String title;
-    @UniqueElements
+//    @UniqueElements
     @Size(min = 10, max = 1000, message = "Provided title has incorrect length")
     private String question;
     private List<Long> commentsToId;
