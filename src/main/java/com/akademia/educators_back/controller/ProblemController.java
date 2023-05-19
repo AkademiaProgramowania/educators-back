@@ -22,7 +22,7 @@ public class ProblemController {
     public ProblemServiceImpl problemService;
 
     /**
-     * Controller to problem list.
+     * Controller get to problem list.
      * @return response entity
      */
     @GetMapping("/list")

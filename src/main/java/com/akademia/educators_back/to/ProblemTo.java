@@ -6,6 +6,9 @@ import lombok.Setter;
 
 import java.util.List;
 
+/**
+ * Object representing exist problem
+ */
 @Getter
 @Setter
 public class ProblemTo {
