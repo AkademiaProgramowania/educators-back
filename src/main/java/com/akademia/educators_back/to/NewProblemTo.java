@@ -14,12 +14,13 @@ import java.util.List;
 @Setter
 public class NewProblemTo {
 
-
     @Size(min = 3, max = 100)
     private String title;
-    @UniqueElements
-    @Size(min = 10, max = 1000, message = "Provided title has incorrect length")
+
+    @Size(min = 10, max = 1000)
     private String question;
+
     private List<Long> commentsToId;
+
     private String categoryName;
 }

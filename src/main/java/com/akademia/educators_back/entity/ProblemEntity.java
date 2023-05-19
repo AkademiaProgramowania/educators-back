@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.List;
 
@@ -19,9 +20,9 @@ public class ProblemEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(min = 3, max = 100)
     private String title;
+
+    @Column(unique = true)
     private String question;
 
     @OneToMany(mappedBy = "problemEntity")

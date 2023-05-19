@@ -15,11 +15,13 @@ import java.util.List;
 public class ProblemTo {
 
     private Long id;
-    @Size(min = 3, max = 100, message = "Provided title has incorrect length")
+
+    @Size(min = 3, max = 100)
     private String title;
-//    @UniqueElements
-    @Size(min = 10, max = 1000, message = "Provided title has incorrect length")
+
+    @Size(min = 10, max = 1000)
     private String question;
+
     private List<Long> commentsToId;
 
     private CategoryEntity categoryEntity;
