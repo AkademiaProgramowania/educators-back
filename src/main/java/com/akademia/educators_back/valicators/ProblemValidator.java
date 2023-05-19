@@ -16,9 +16,16 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class ProblemValidator {
 
+    /** Static value for minimum title lenght */
     private final int MIN_TITLE_LENGTH = 3;
+
+    /** Static value for maximum title lenght */
     private final int MAX_TITLE_LENGTH = 100;
+
+    /** Static value for minimum question length */
     private final int MIN_QUESTION_LENGTH = 10;
+
+    /** Static value for maximum question length */
     private final int MAX_QUESTION_LENGTH = 1000;
     private ProblemRepository problemRepository;
 
