@@ -6,7 +6,7 @@ import com.akademia.educators_back.entity.CommentEntity;
 import com.akademia.educators_back.exception.CommentDoesNotExistException;
 import com.akademia.educators_back.mapper.CommentMapper;
 import com.akademia.educators_back.repository.CommentRepository;
-import com.akademia.educators_back.valicators.CommentValidator;
+import com.akademia.educators_back.validator.CommentValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
