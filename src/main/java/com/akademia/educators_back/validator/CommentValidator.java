@@ -1,4 +1,4 @@
-package com.akademia.educators_back.valicators;
+package com.akademia.educators_back.validator;
 
 import com.akademia.educators_back.exception.CommentDoesNotExistException;
 import com.akademia.educators_back.exception.TextLengthException;
