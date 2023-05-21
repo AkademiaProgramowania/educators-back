@@ -8,7 +8,7 @@ import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.repository.ProblemRepository;
 import lombok.AllArgsConstructor;
-import com.akademia.educators_back.valicators.ProblemValidator;
+import com.akademia.educators_back.validator.ProblemValidator;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,8 +24,6 @@ public class ProblemServiceImpl implements Problem {
     @Override
     public void addProblem(NewProblemTo newProblemTo) {
         problemValidator.validationMethod(newProblemTo);
-        //TODO - sprawdzić czy podana categoria jako string istnieje
-        // zrobić to w metodzie validacyjnej
         ProblemEntity problemEntity = problemMapper.toProblemEntity(newProblemTo);
         problemRepository.save(problemEntity);
     }
