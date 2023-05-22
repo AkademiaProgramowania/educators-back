@@ -25,21 +25,21 @@ public class ProblemServiceImpl implements Problem {
 
     @Override
     public void addProblem(NewProblemTo newProblemTo) {
-        problemValidator.validationMethod(newProblemTo);
+        problemValidator.validNewProblem(newProblemTo);
         ProblemEntity problemEntity = problemMapper.toProblemEntity(newProblemTo);
         problemRepository.save(problemEntity);
     }
 
     @Override
     public void deleteProblem(ProblemTo problemTo) {
-        problemValidator.validationMethod(problemTo);
+        problemValidator.validExistProblem(problemTo);
         ProblemEntity problemEntity = problemMapper.toProblemEntity(problemTo);
         problemRepository.delete(problemEntity);
     }
 
     @Override
     public void updateProblem(ProblemTo problemTo) {
-        problemValidator.validationMethod(problemTo);
+        problemValidator.validExistProblem(problemTo);
         ProblemEntity problemEntity;
         problemEntity = problemRepository.findById(problemTo.getId()).orElseThrow(()->new ProblemDoesNotExistException(problemTo.getId()));
         problemEntity.setQuestion(problemTo.getQuestion());
