@@ -25,7 +25,7 @@ public class CommentServiceImpl implements Comment {
 
     @Override
     public void addComment(CommentTo commentTo) {
-        commentValidator.validation(commentTo);
+        //commentValidator.validation(commentTo);
         CommentEntity commentEntity = commentMapper.toCommentEntity(commentTo);
         commentRepository.save(commentEntity);
     }
