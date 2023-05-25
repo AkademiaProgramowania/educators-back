@@ -1,4 +1,4 @@
-package com.akademia.educators_back.valicators;
+package com.akademia.educators_back.validator;
 
 import com.akademia.educators_back.exception.CategoryDoesNotExistException;
 import com.akademia.educators_back.exception.ProblemAlreadyExistException;
@@ -70,7 +70,6 @@ public class ProblemValidator {
             throw new TextLengthException("Provided question has incorrect length");
         }
     }
-//TODO Rozbieżnośc pomiędzy metodami categoryExistCheck
     public void validationMethod(ProblemTo problemTo){
         titleLengthCheck(problemTo);
         questionLengthCheck(problemTo);
