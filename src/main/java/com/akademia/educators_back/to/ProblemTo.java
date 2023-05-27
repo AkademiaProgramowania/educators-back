@@ -1,13 +1,16 @@
 package com.akademia.educators_back.to;
 
 import com.akademia.educators_back.entity.CategoryEntity;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.aspectj.lang.annotation.Before;
 
 import java.util.List;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProblemTo {
 
     private Long id;
