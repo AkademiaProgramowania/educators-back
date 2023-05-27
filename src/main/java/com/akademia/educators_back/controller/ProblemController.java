@@ -1,5 +1,6 @@
 package com.akademia.educators_back.controller;
 
+import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.service.impl.ProblemServiceImpl;
 import com.akademia.educators_back.to.NewProblemTo;
@@ -43,5 +44,11 @@ public class ProblemController {
     void createProblem(@RequestBody NewProblemTo newProblemTo){
         LOG.info("Request to add a new problem has been received");
         problemService.addProblem(newProblemTo);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    void changeExistingProblem(@RequestBody ProblemTo problemTo){
+        problemService.updateProblem(problemTo);
     }
 }

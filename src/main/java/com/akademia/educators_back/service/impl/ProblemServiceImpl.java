@@ -6,6 +6,7 @@ import com.akademia.educators_back.to.NewProblemTo;
 import com.akademia.educators_back.to.ProblemTo;
 import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.exception.ProblemDoesNotExistException;
+import com.akademia.educators_back.mapper.ProblemMapper;
 import com.akademia.educators_back.repository.ProblemRepository;
 import lombok.AllArgsConstructor;
 import com.akademia.educators_back.validator.ProblemValidator;
@@ -17,6 +18,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class ProblemServiceImpl implements Problem {
+
     private ProblemRepository problemRepository;
     private ProblemMapper problemMapper;
     private ProblemValidator problemValidator;
