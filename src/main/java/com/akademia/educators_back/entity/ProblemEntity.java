@@ -10,6 +10,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Getter
 @Setter
 @Entity
@@ -19,7 +20,6 @@ public class ProblemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
 
     @Column(unique = true)

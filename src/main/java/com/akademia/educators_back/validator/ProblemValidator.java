@@ -1,4 +1,4 @@
-package com.akademia.educators_back.valicators;
+package com.akademia.educators_back.validator;
 
 import com.akademia.educators_back.exception.CategoryDoesNotExistException;
 import com.akademia.educators_back.exception.ProblemAlreadyExistException;
@@ -19,6 +19,19 @@ public class ProblemValidator {
     private final int MAX_QUESTION_LENGTH = 1000;
     private ProblemRepository problemRepository;
 
+    public void validExistProblem(ProblemTo problemTo){
+        titleLengthCheck(problemTo);
+        questionLengthCheck(problemTo);
+        categoryExistCheck(problemTo);
+        questionExistCheck(problemTo);
+    }
+
+    public void validNewProblem(NewProblemTo newProblemTo){
+        titleLengthCheck(newProblemTo);
+        questionLengthCheck(newProblemTo);
+        categoryExistCheck(newProblemTo);
+        questionExistCheck(newProblemTo);
+    }
     private void categoryExistCheck(NewProblemTo newProblemTo) {
         if (!problemRepository.existsByCategoryEntity_CategoryName(newProblemTo.getCategoryName())) {
             throw new CategoryDoesNotExistException(newProblemTo.getCategoryName());
@@ -69,20 +82,6 @@ public class ProblemValidator {
         if (questionLength < MIN_QUESTION_LENGTH || questionLength > MAX_QUESTION_LENGTH) {
             throw new TextLengthException("Provided question has incorrect length");
         }
-    }
-//TODO Rozbieżnośc pomiędzy metodami categoryExistCheck
-    public void validationMethod(ProblemTo problemTo){
-        titleLengthCheck(problemTo);
-        questionLengthCheck(problemTo);
-        categoryExistCheck(problemTo);
-        questionExistCheck(problemTo);
-    }
-
-    public void validationMethod(NewProblemTo newProblemTo){
-        titleLengthCheck(newProblemTo);
-        questionLengthCheck(newProblemTo);
-        categoryExistCheck(newProblemTo);
-        questionExistCheck(newProblemTo);
     }
 }
 
