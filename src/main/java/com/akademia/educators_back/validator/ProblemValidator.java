@@ -29,6 +29,30 @@ public class ProblemValidator {
     private final int MAX_QUESTION_LENGTH = 1000;
     private ProblemRepository problemRepository;
 
+
+    /**
+     * Performs validation on the problem data.
+     *
+     * @param problemTo problem TO is an object with ID representing a problem
+     */
+    public void validExistProblem(ProblemTo problemTo){
+        titleLengthCheck(problemTo);
+        questionLengthCheck(problemTo);
+        categoryExistCheck(problemTo);
+        questionExistCheck(problemTo);
+    }
+    /**
+     * Performs validation on the new problem data.
+     *
+     * @param newProblemTo New problem TO is an object without ID representing a new problem
+     */
+    public void validNewProblem(NewProblemTo newProblemTo){
+        titleLengthCheck(newProblemTo);
+        questionLengthCheck(newProblemTo);
+        categoryExistCheck(newProblemTo);
+        questionExistCheck(newProblemTo);
+    }
+
     /**
      * Check if the category of new problem exist
      * @param newProblemTo New problem TO is an object without ID representing a new problem
@@ -113,29 +137,6 @@ public class ProblemValidator {
         }
     }
 
-    /**
-     * Performs validation on the problem data.
-     *
-     * @param problemTo problem TO is an object with ID representing a problem
-     */
-    public void validationMethod(ProblemTo problemTo){
-        titleLengthCheck(problemTo);
-        questionLengthCheck(problemTo);
-        categoryExistCheck(problemTo);
-        questionExistCheck(problemTo);
-    }
-
-    /**
-     * Performs validation on the new problem data.
-     *
-     * @param newProblemTo New problem TO is an object without ID representing a new problem
-     */
-    public void validationMethod(NewProblemTo newProblemTo){
-        titleLengthCheck(newProblemTo);
-        questionLengthCheck(newProblemTo);
-        categoryExistCheck(newProblemTo);
-        questionExistCheck(newProblemTo);
-    }
 }
 
 

@@ -1,5 +1,6 @@
 package com.akademia.educators_back.mapper;
 
+import com.akademia.educators_back.entity.CategoryEntity;
 import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.to.NewProblemTo;
 import com.akademia.educators_back.to.ProblemTo;
