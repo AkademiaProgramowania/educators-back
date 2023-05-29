@@ -53,7 +53,7 @@ public class ProblemController {
 
     /**
      * Controller to create a new problem
-     * @param newProblemTo The NewProblemTo is an object representing the new Problem.
+     * @param newProblemTo The NewProblemTo is an object representing the new problem.
      */
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.ACCEPTED)
@@ -62,6 +62,10 @@ public class ProblemController {
         problemService.addProblem(newProblemTo);
     }
 
+    /**
+     * Controller to update exist problem
+     * @param problemTo The ProblemTo is an object representing exist problem.
+     */
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.ACCEPTED)
     void changeExistingProblem(@RequestBody ProblemTo problemTo){
