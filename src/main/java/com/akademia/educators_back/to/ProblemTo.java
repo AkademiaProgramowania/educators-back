@@ -1,8 +1,9 @@
 package com.akademia.educators_back.to;
 
 import com.akademia.educators_back.entity.CategoryEntity;
+import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.aspectj.lang.annotation.Before;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.List;
 
@@ -15,11 +16,11 @@ public class ProblemTo {
 
     private Long id;
 
-    @Size(min = 3, max = 100)
     private String title;
 
-    @Size(min = 10, max = 1000)
     private String question;
+
     private List<Long> commentsToId;
+
     private CategoryEntity categoryEntity;
 }
