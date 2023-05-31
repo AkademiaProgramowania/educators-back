@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.Before;
 import java.util.List;
 
 /**
- * Object representing exist problem
+ * Transfer object representing exist Problem object to operations in database.
  */
 @Getter
 @Setter

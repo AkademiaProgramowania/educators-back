@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.List;
 
 /**
- * Entity of problem
+ * Entity of Problem object.
  */
 @NoArgsConstructor
 @AllArgsConstructor
