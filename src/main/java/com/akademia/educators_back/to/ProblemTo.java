@@ -13,9 +13,9 @@ import java.util.List;
 @AllArgsConstructor
 public class ProblemTo {
 
-    private Long id;
+    private long id;
     private String title;
     private String question;
     private List<Long> commentsToId;
-    private CategoryEntity categoryEntity;
+    private String categoryName;
 }

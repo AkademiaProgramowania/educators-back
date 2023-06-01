@@ -59,8 +59,8 @@ public class ProblemValidator {
     }
 
     private void categoryExistCheck(ProblemTo problemTo) {
-        if (!problemRepository.existsByCategoryEntity_CategoryName(problemTo.getCategoryEntity().getCategoryName())) {
-            throw new CategoryDoesNotExistException(problemTo.getCategoryEntity().getCategoryName());
+        if (!problemRepository.existsByCategoryEntity_CategoryName(problemTo.getCategoryName())) {
+            throw new CategoryDoesNotExistException(problemTo.getCategoryName());
         }
     }
 

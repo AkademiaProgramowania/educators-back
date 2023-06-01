@@ -1,6 +1,9 @@
 package com.akademia.educators_back.service.impl;
 
+import com.akademia.educators_back.entity.CategoryEntity;
+import com.akademia.educators_back.exception.CategoryDoesNotExistException;
 import com.akademia.educators_back.mapper.ProblemMapper;
+import com.akademia.educators_back.repository.CategoryRepository;
 import com.akademia.educators_back.service.Problem;
 import com.akademia.educators_back.to.NewProblemTo;
 import com.akademia.educators_back.to.ProblemTo;
@@ -23,10 +26,14 @@ public class ProblemServiceImpl implements Problem {
     private ProblemMapper problemMapper;
     private ProblemValidator problemValidator;
 
+    private CategoryRepository categoryRepository;
+
     @Override
     public void addProblem(NewProblemTo newProblemTo) {
         problemValidator.validNewProblem(newProblemTo);
         ProblemEntity problemEntity = problemMapper.toProblemEntity(newProblemTo);
+        CategoryEntity categoryEntity = findCategoryEntity(newProblemTo.getCategoryName());
+        problemEntity.setCategoryEntity(categoryEntity);
         problemRepository.save(problemEntity);
     }
 
@@ -44,7 +51,8 @@ public class ProblemServiceImpl implements Problem {
         problemEntity = problemRepository.findById(problemTo.getId()).orElseThrow(()->new ProblemDoesNotExistException(problemTo.getId()));
         problemEntity.setQuestion(problemTo.getQuestion());
         problemEntity.setTitle(problemTo.getTitle());
-        problemEntity.setCategoryEntity(problemTo.getCategoryEntity());
+        CategoryEntity categoryEntity = findCategoryEntity(problemTo.getCategoryName());
+        problemEntity.setCategoryEntity(categoryEntity);
         problemRepository.save(problemEntity);
     }
 
@@ -62,5 +70,10 @@ public class ProblemServiceImpl implements Problem {
     public ProblemTo getProblemById(Long id) {
         ProblemEntity problemEntity = problemRepository.findById(id).orElseThrow(()->new ProblemDoesNotExistException(id));
         return problemMapper.toProblemTO(problemEntity);
+    }
+
+    private CategoryEntity findCategoryEntity(String categoryName){
+        CategoryEntity categoryEntity = categoryRepository.getCategoryEntityByCategoryName(categoryName);
+        return categoryEntity;
     }
 }
