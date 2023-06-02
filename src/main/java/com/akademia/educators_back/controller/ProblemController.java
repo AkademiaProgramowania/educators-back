@@ -1,6 +1,5 @@
 package com.akademia.educators_back.controller;
 
-import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.service.impl.ProblemServiceImpl;
 import com.akademia.educators_back.to.NewProblemTo;
@@ -11,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,7 +41,7 @@ public class ProblemController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void createProblem(@RequestBody @Valid NewProblemTo newProblemTo, BindingResult bindingResult){
+    void createProblem(@RequestBody @Valid NewProblemTo newProblemTo){
         LOG.info("Request to add a new problem has been received");
         problemService.addProblem(newProblemTo);
     }
