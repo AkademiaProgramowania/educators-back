@@ -14,7 +14,10 @@ public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String categoryName;
+
+    @OneToMany(mappedBy = "categoryEntity")
+    private List<ProblemEntity> problems;
 
 }

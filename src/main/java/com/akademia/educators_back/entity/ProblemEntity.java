@@ -19,7 +19,7 @@ public class ProblemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String title;
 
     @Column(unique = true)
