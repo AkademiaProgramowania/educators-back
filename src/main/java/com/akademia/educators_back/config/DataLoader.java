@@ -10,7 +10,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 /**
- * Backend data for tests. Loaded everythime when app get started.
+ * Backend data for tests. Loaded everytime when app get started.
  */
 @Component
 @AllArgsConstructor
