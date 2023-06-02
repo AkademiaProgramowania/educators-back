@@ -64,7 +64,7 @@ public class ProblemMapper {
         }
         problemTo.setTitle(problemEntity.getTitle());
         problemTo.setQuestion(problemEntity.getQuestion());
-        problemTo.setCategoryEntity(problemEntity.getCategoryEntity());
+        problemTo.setCategoryName(problemEntity.getCategoryEntity().getCategoryName());
         return problemTo;
     }
 }

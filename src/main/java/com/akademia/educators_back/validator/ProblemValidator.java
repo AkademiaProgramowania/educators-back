@@ -100,8 +100,8 @@ public class ProblemValidator {
      * @param problemTo problem TO is an object with ID representing a problem
      */
     private void categoryExistCheck(ProblemTo problemTo) {
-        if (!problemRepository.existsByCategoryEntity_CategoryName(problemTo.getCategoryEntity().getCategoryName())) {
-            throw new CategoryDoesNotExistException(problemTo.getCategoryEntity().getCategoryName());
+        if (!problemRepository.existsByCategoryEntity_CategoryName(problemTo.getCategoryName())) {
+            throw new CategoryDoesNotExistException(problemTo.getCategoryName());
         }
     }
 
