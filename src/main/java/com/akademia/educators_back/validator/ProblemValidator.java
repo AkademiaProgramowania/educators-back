@@ -27,11 +27,12 @@ public class ProblemValidator {
     }
 
     public void validNewProblem(NewProblemTo newProblemTo){
-        titleLengthCheck(newProblemTo);
-        questionLengthCheck(newProblemTo);
+//        titleLengthCheck(newProblemTo);
+//        questionLengthCheck(newProblemTo);
         categoryExistCheck(newProblemTo);
-        questionExistCheck(newProblemTo);
+//        questionExistCheck(newProblemTo);
     }
+
     private void categoryExistCheck(NewProblemTo newProblemTo) {
         if (!problemRepository.existsByCategoryEntity_CategoryName(newProblemTo.getCategoryName())) {
             throw new CategoryDoesNotExistException(newProblemTo.getCategoryName());

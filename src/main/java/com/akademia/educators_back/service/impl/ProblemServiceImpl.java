@@ -30,7 +30,7 @@ public class ProblemServiceImpl implements Problem {
 
     @Override
     public void addProblem(NewProblemTo newProblemTo) {
-//        problemValidator.validNewProblem(newProblemTo);
+        problemValidator.validNewProblem(newProblemTo);
         ProblemEntity problemEntity = problemMapper.toProblemEntity(newProblemTo);
         CategoryEntity categoryEntity = findCategoryEntity(newProblemTo.getCategoryName());
         problemEntity.setCategoryEntity(categoryEntity);
