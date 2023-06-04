@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controller for handling request add Problems object.
+ */
 @RequestMapping("api/problems")
 @RestController
 @AllArgsConstructor
@@ -22,11 +25,21 @@ public class ProblemController {
     private static final Logger LOG = LoggerFactory.getLogger(ProblemController.class);
     public ProblemServiceImpl problemService;
 
+    /**
+     * Controller responsible for sending list of all Problem objects.
+     * @return response entity
+     */
     @GetMapping("/list")
     public ResponseEntity<List<ProblemTo>> getProblems(){
         return ResponseEntity.ok().body(problemService.getProblems());
     }
 
+    /**
+     * Cotroller responsible for get single Problem with provided param.
+     * @param id ID is unique number which represent every one problem.
+     * @return The ProblemTo witch unique ID
+     * @throws Exception when there in no problem which provided ID.
+     */
     @GetMapping("/{id}")
     public ProblemTo findProblemById(@PathVariable Long id){
         ProblemTo problemTo;
@@ -38,7 +51,10 @@ public class ProblemController {
         return problemTo;
     }
 
-
+    /**
+     * Controller responsible for create a new Problem object
+     * @param newProblemTo The NewProblemTo is an object representing the new problem.
+     */
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.ACCEPTED)
     void createProblem(@RequestBody NewProblemTo newProblemTo){
@@ -46,6 +62,10 @@ public class ProblemController {
         problemService.addProblem(newProblemTo);
     }
 
+    /**
+     * Controller responsible for update exist Problem
+     * @param problemTo The ProblemTo is an object representing exist problem.
+     */
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.ACCEPTED)
     void changeExistingProblem(@RequestBody ProblemTo problemTo){

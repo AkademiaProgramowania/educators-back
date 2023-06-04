@@ -5,6 +5,9 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * Entity of Problem object.
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

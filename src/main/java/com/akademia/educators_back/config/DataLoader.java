@@ -9,6 +9,9 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+/**
+ * Backend data for tests. Loaded everytime when app get started.
+ */
 @Component
 @AllArgsConstructor
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
