@@ -8,6 +8,9 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.List;
 
+/**
+ * Entity of Problem object.
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

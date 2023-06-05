@@ -7,6 +7,9 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * Transfer object representing new Problem object for saving in database.
+ */
 @Getter
 @Setter
 @Builder
