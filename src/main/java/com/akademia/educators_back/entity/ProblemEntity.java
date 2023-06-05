@@ -23,8 +23,10 @@ public class ProblemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+//    @Size(min = 3, max = 100)
     private String title;
 
+//    @Size(min = 10, max = 1000)
     @Column(unique = true)
     private String question;
 
