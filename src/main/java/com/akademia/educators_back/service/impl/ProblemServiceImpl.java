@@ -1,7 +1,6 @@
 package com.akademia.educators_back.service.impl;
 
 import com.akademia.educators_back.entity.CategoryEntity;
-import com.akademia.educators_back.exception.CategoryDoesNotExistException;
 import com.akademia.educators_back.mapper.ProblemMapper;
 import com.akademia.educators_back.repository.CategoryRepository;
 import com.akademia.educators_back.service.Problem;
