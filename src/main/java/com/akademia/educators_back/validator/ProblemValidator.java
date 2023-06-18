@@ -47,11 +47,14 @@ public class ProblemValidator {
      * @param newProblemTo New problem TO is an object without ID representing a new problem
      */
     public void validNewProblem(NewProblemTo newProblemTo){
-        titleLengthCheck(newProblemTo);
-        questionLengthCheck(newProblemTo);
+        //TODO left commented code to faster check differences between
+        // manual validation and validation by annotation on field
+        // titleLengthCheck(newProblemTo);
+        // questionLengthCheck(newProblemTo);
+        // questionExistCheck(newProblemTo);
         categoryExistCheck(newProblemTo);
-        questionExistCheck(newProblemTo);
     }
+
 
     /**
      * Check if the category of new problem exist
@@ -136,7 +139,6 @@ public class ProblemValidator {
             throw new TextLengthException("Provided question has incorrect length");
         }
     }
-
 }
 
 
