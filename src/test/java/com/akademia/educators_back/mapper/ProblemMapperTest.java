@@ -20,8 +20,6 @@ class ProblemMapperTest {
     @Autowired
     private ProblemMapper problemMapper;
 
-    @Autowired
-    private ProblemServiceImpl problemServiceImpl;
 
     @Test
     void shouldMapToEntityWithProperNewProblemToValues() {
@@ -73,7 +71,6 @@ class ProblemMapperTest {
         assertEquals(Long.valueOf(1L), problemTo.getId());
         assertEquals(TITLE, problemTo.getTitle());
         assertEquals(QUESTION, problemTo.getQuestion());
-        assertEquals(categoryEntity, problemServiceImpl.);
     }
 
     private ProblemTo generateProblemTo(){
