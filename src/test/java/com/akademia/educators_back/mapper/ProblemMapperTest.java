@@ -2,6 +2,7 @@ package com.akademia.educators_back.mapper;
 
 import com.akademia.educators_back.entity.CategoryEntity;
 import com.akademia.educators_back.entity.ProblemEntity;
+import com.akademia.educators_back.service.impl.ProblemServiceImpl;
 import com.akademia.educators_back.to.NewProblemTo;
 import com.akademia.educators_back.to.ProblemTo;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,9 @@ class ProblemMapperTest {
 
     @Autowired
     private ProblemMapper problemMapper;
+
+    @Autowired
+    private ProblemServiceImpl problemServiceImpl;
 
     @Test
     void shouldMapToEntityWithProperNewProblemToValues() {
@@ -69,7 +73,7 @@ class ProblemMapperTest {
         assertEquals(Long.valueOf(1L), problemTo.getId());
         assertEquals(TITLE, problemTo.getTitle());
         assertEquals(QUESTION, problemTo.getQuestion());
-        assertEquals(categoryEntity, problemTo.getCategoryEntity());
+        assertEquals(categoryEntity, problemServiceImpl.);
     }
 
     private ProblemTo generateProblemTo(){
@@ -77,6 +81,7 @@ class ProblemMapperTest {
                 .id(1L)
                 .title(TITLE)
                 .question(QUESTION)
+                .categoryName(CATEGORY_NAME)
                 .build();
     }
 
@@ -84,6 +89,7 @@ class ProblemMapperTest {
         return NewProblemTo.builder()
                 .title(TITLE)
                 .question(QUESTION)
+                .categoryName(CATEGORY_NAME)
                 .build();
     }
 
