@@ -6,6 +6,7 @@ import com.akademia.educators_back.mapper.ProblemMapper;
 import com.akademia.educators_back.repository.CategoryRepository;
 import com.akademia.educators_back.repository.ProblemRepository;
 import com.akademia.educators_back.to.NewProblemTo;
+import com.akademia.educators_back.to.ProblemTo;
 import com.akademia.educators_back.validator.ProblemValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -74,7 +78,28 @@ class ProblemServiceImplTest {
     }
 
     @Test
-    void getProblems() {
+    void shouldGetProblems() {
+        //given
+        ProblemEntity firstProblemEntity = new ProblemEntity();
+        ProblemEntity secondProblemEntity = new ProblemEntity();
+        List<ProblemEntity> problemEntities = new ArrayList<>(
+                List.of(firstProblemEntity, secondProblemEntity));
+
+        ProblemTo firstProblemTo = new ProblemTo();
+        ProblemTo secondProblemTo = new ProblemTo();
+        List<ProblemTo> problemTos = new ArrayList<>(
+                List.of(firstProblemTo, secondProblemTo));
+
+
+        when(problemRepository.findAll()).thenReturn(problemEntities);
+        when(problemMapper.toProblemTO(firstProblemEntity)).thenReturn(firstProblemTo);
+        when(problemMapper.toProblemTO(secondProblemEntity)).thenReturn(secondProblemTo);
+
+        //when
+        List<ProblemTo> actualProblemTo = problemService.getProblems();
+
+        //then
+        assertThat(actualProblemTo).containsExactlyElementsOf(problemTos);
     }
 
     @Test
