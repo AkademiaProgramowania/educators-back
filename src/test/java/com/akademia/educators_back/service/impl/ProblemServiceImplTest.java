@@ -1,6 +1,7 @@
 package com.akademia.educators_back.service.impl;
 
 import com.akademia.educators_back.entity.CategoryEntity;
+import com.akademia.educators_back.entity.CommentEntity;
 import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.mapper.ProblemMapper;
 import com.akademia.educators_back.repository.CategoryRepository;
@@ -18,8 +19,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -48,7 +51,6 @@ class ProblemServiceImplTest {
     @BeforeEach
     void setUp() {
         problemService = new ProblemServiceImpl(problemRepository, problemMapper, problemValidator, categoryRepository);
-
     }
 
     @Test
@@ -103,6 +105,25 @@ class ProblemServiceImplTest {
     }
 
     @Test
-    void getProblemById() {
+    void getProblemByIdWithCorrectProvidedId() {
+        //given
+        ProblemEntity firstProblemEntity = new ProblemEntity(1L, "title1", "question1", List.of(new CommentEntity()), new CategoryEntity());
+        ProblemEntity secondProblemEntity = new ProblemEntity(2L, "title2", "question2", List.of(new CommentEntity()), new CategoryEntity());
+        List<ProblemEntity> problemEntities = new ArrayList<>(
+                List.of(firstProblemEntity, secondProblemEntity));
+
+        ProblemTo firstProblemTo = new ProblemTo(1L, "title1", "question1", List.of(1L), "category1");
+        ProblemTo secondProblemTo = new ProblemTo(2L, "title1", "question1", List.of(1L), "category1");
+        List<ProblemTo> problemTos = new ArrayList<>(
+                List.of(firstProblemTo, secondProblemTo));
+
+        when(problemRepository.findById(1L)).thenReturn(Optional.of(firstProblemEntity));
+        when(problemMapper.toProblemTO(firstProblemEntity)).thenReturn(firstProblemTo);
+
+        //when
+        ProblemTo problemToExpected = problemService.getProblemById(1L);
+
+        //then
+        assertEquals(firstProblemTo, problemToExpected);
     }
 }
