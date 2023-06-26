@@ -45,7 +45,6 @@ class ProblemServiceImplTest {
     private CategoryRepository categoryRepository;
     NewProblemTo newProblemTo;
     ProblemEntity problemEntity;
-
     CategoryEntity categoryEntity;
 
     @BeforeEach
