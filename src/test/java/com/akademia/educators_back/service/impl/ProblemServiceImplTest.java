@@ -1,5 +1,6 @@
 package com.akademia.educators_back.service.impl;
 
+import com.akademia.educators_back.TestDataGenerator;
 import com.akademia.educators_back.entity.CategoryEntity;
 import com.akademia.educators_back.entity.CommentEntity;
 import com.akademia.educators_back.entity.ProblemEntity;
@@ -30,6 +31,8 @@ import static org.mockito.Mockito.*;
 class ProblemServiceImplTest {
 
     @Autowired
+    TestDataGenerator testDataGenerator;
+    @Autowired
     private ProblemServiceImpl problemService;
 
     @Mock
@@ -59,6 +62,7 @@ class ProblemServiceImplTest {
         problemEntity = new ProblemEntity();
         categoryEntity = new CategoryEntity();
 
+
         when(problemMapper.toProblemEntity(newProblemTo)).thenReturn(problemEntity);
         doNothing().when(problemValidator).validNewProblem(newProblemTo);
         when(categoryRepository.getCategoryEntityByCategoryName(newProblemTo.getCategoryName())).thenReturn(categoryEntity);
@@ -68,6 +72,34 @@ class ProblemServiceImplTest {
 
         //then
         verify(problemRepository).save(problemEntity);
+    }
+
+    @Test
+    void testForJul() {
+        //given
+//        newProblemTo = new NewProblemTo();
+//        problemEntity = new ProblemEntity();
+//        categoryEntity = new CategoryEntity();
+
+        CategoryEntity categoryEntity1 = testDataGenerator.getCategoryEntity();
+        categoryRepository.save(categoryEntity1);
+        ProblemEntity problemEntity1 = testDataGenerator.getProblemEntity(categoryEntity1);
+        problemRepository.save(problemEntity1);
+
+        NewProblemTo newProblemTo1 = testDataGenerator.getNewProblemTo();
+
+
+        when(problemMapper.toProblemEntity(newProblemTo1)).thenReturn(problemEntity1);
+        doNothing().when(problemValidator).validNewProblem(newProblemTo1);
+//        when(categoryRepository.getCategoryEntityByCategoryName(newProblemTo1.getCategoryName())).thenReturn(categoryEntity);
+//        when(problemRepository.save(problemEntity1)).thenReturn(problemEntity1);
+
+        //when
+        problemService.addProblem(newProblemTo1);
+
+        //then
+        verify(problemRepository).save(problemEntity1);
+        assertEquals(problemRepository.findAll().get(0), problemEntity1);
     }
 
     @Test

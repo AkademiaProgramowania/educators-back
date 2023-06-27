@@ -23,8 +23,8 @@ public class TestDataGenerator {
         return ProblemEntity.builder()
                 .title("title")
                 .question("question")
-                .categoryEntity(categoryEntity)
                 .comments(new ArrayList<>())
+                .categoryEntity(categoryEntity)
                 .build();
     }
 
