@@ -58,6 +58,7 @@ public class ProblemServiceImpl implements Problem {
      * @param problemTo problem TO is an object with ID representing a problem
      */
     @Override
+    //TODO prawdopodobnie zła metoda ponieważ nie posiada mapowania
     public void updateProblem(ProblemTo problemTo) {
         problemValidator.validExistProblemForUpdate(problemTo);
         ProblemEntity problemEntity;

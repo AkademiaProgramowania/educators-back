@@ -2,7 +2,6 @@ package com.akademia.educators_back.service.impl;
 
 import com.akademia.educators_back.TestDataGenerator;
 import com.akademia.educators_back.entity.CategoryEntity;
-import com.akademia.educators_back.entity.CommentEntity;
 import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.mapper.ProblemMapper;
 import com.akademia.educators_back.repository.CategoryRepository;
@@ -80,7 +79,7 @@ class ProblemServiceImplTest {
     }
 
     @Test
-    void ShouldAddProblemWithCorrectData() {
+    void shouldAddProblemWithCorrectData() {
         //given
         CategoryEntity categoryEntity1 = testDataGenerator.getCategoryEntity();
         categoryRepository.save(categoryEntity1);
@@ -99,7 +98,7 @@ class ProblemServiceImplTest {
     }
 
     @Test
-    void deleteProblem() {
+    void shouldDeleteProblemWithCorrectData() {
         //given
         CategoryEntity categoryEntity1 = testDataGenerator.getCategoryEntity();
         categoryRepository.save(categoryEntity1);
@@ -110,15 +109,28 @@ class ProblemServiceImplTest {
 
         //when
         problemService.deleteProblem(problemTo1);
-        //TODO zmienić walidcję do update i delete problem
+
         //then
-//        assertEquals(problemRepository.findAll().get(1).getQuestion(), newProblemTo1.getQuestion());
-//        assertThat(problemRepository).isNotNull();
         assertThat(problemRepository.findAll()).hasSize(0);
     }
 
     @Test
-    void updateProblem() {
+    void verifyMethodInDeleteProblemWithCorrectData() {
+        ProblemTo problemTo = new ProblemTo();
+        ProblemEntity problemEntity = new ProblemEntity();
+
+        when(mockProblemMapper.toProblemEntity(problemTo)).thenReturn(problemEntity);
+        doNothing().when(mockProblemValidator).validExistProblem(problemTo);
+
+        //when
+        mockProblemService.deleteProblem(problemTo);
+
+        //then
+        verify(mockProblemRepository).delete(problemEntity);
+    }
+
+    @Test
+    void shouldUpdateProblemWithCorrectData() {
         //given
         CategoryEntity categoryEntity2 = testDataGenerator.getCategoryEntity();
         categoryRepository.save(categoryEntity2);
@@ -134,6 +146,22 @@ class ProblemServiceImplTest {
         assertEquals(problemRepository.findAll().get(0).getQuestion(), problemTo2.getQuestion());
     }
 
+    @Test
+    void verifyMethodInUpdateProblemWithCorrectData() {
+        //given
+        ProblemTo problemTo = new ProblemTo();
+        ProblemEntity problemEntity = new ProblemEntity();
+
+        doNothing().when(mockProblemValidator).validExistProblemForUpdate(problemTo);
+        when(mockProblemRepository.findById(problemTo.getId())).thenReturn(Optional.of(problemEntity));
+
+        //when
+        mockProblemService.updateProblem(problemTo);
+
+        //then
+        verify(mockProblemRepository).save(problemEntity);
+
+    }
     @Test
     void shouldGetProblems() {
         //given
