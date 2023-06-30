@@ -39,7 +39,7 @@ public class ProblemValidator {
         titleLengthCheck(problemTo);
         questionLengthCheck(problemTo);
         categoryExistCheck(problemTo);
-        questionExistCheck(problemTo);
+//        questionExistCheck(problemTo);
     }
     /**
      * Performs validation on the new problem data.
