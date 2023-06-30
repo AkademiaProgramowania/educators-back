@@ -1,6 +1,7 @@
 package com.akademia.educators_back.service.impl;
 
 import com.akademia.educators_back.TestDataGenerator;
+//import com.akademia.educators_back.config.DataLoader;
 import com.akademia.educators_back.entity.CategoryEntity;
 import com.akademia.educators_back.entity.CommentEntity;
 import com.akademia.educators_back.entity.ProblemEntity;
@@ -46,6 +47,11 @@ class ProblemServiceImplTest {
 
     @Mock
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    ProblemRepository problemRepo;
+    @Autowired
+    CategoryRepository categoryRepo;
     NewProblemTo newProblemTo;
     ProblemEntity problemEntity;
     CategoryEntity categoryEntity;
@@ -81,10 +87,12 @@ class ProblemServiceImplTest {
 //        problemEntity = new ProblemEntity();
 //        categoryEntity = new CategoryEntity();
 
+        ProblemServiceImpl problemServiceNotMocked = new ProblemServiceImpl(problemRepo, problemMapper, problemValidator, categoryRepo);
+
         CategoryEntity categoryEntity1 = testDataGenerator.getCategoryEntity();
-        categoryRepository.save(categoryEntity1);
+        categoryRepo.save(categoryEntity1);
         ProblemEntity problemEntity1 = testDataGenerator.getProblemEntity(categoryEntity1);
-        problemRepository.save(problemEntity1);
+        problemRepo.save(problemEntity1);
 
         NewProblemTo newProblemTo1 = testDataGenerator.getNewProblemTo();
 
@@ -96,10 +104,11 @@ class ProblemServiceImplTest {
 
         //when
         problemService.addProblem(newProblemTo1);
+        List<ProblemEntity> problemEntities = problemRepo.findAll();
 
         //then
         verify(problemRepository).save(problemEntity1);
-        assertEquals(problemRepository.findAll().get(0), problemEntity1);
+        assertEquals(problemRepo.findAll().get(0).getQuestion(), problemEntity1.getQuestion());
     }
 
     @Test
