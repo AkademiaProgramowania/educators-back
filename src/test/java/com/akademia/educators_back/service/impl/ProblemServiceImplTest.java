@@ -108,26 +108,27 @@ class ProblemServiceImplTest {
     @Test
     void shouldGetProblems() {
         //given
-        ProblemEntity firstProblemEntity = new ProblemEntity();
-        ProblemEntity secondProblemEntity = new ProblemEntity();
+        CategoryEntity categoryEntity1 = testDataGenerator.getCategoryEntity();
+        categoryRepository.save(categoryEntity1);
+        ProblemEntity problemEntity1 = testDataGenerator.getProblemEntity(categoryEntity1);
+        problemRepository.save(problemEntity1);
         List<ProblemEntity> problemEntities = new ArrayList<>(
-                List.of(firstProblemEntity, secondProblemEntity));
+                List.of(problemEntity1));
 
-        ProblemTo firstProblemTo = new ProblemTo();
-        ProblemTo secondProblemTo = new ProblemTo();
+        ProblemTo problemTo1 = testDataGenerator.getProblemTo();
+
         List<ProblemTo> problemTos = new ArrayList<>(
-                List.of(firstProblemTo, secondProblemTo));
+                List.of(problemTo1));
 
 
-//        when(problemRepository.findAll()).thenReturn(problemEntities);
-//        when(problemMapper.toProblemTO(firstProblemEntity)).thenReturn(firstProblemTo);
-//        when(problemMapper.toProblemTO(secondProblemEntity)).thenReturn(secondProblemTo);
+        when(mockProblemRepository.findAll()).thenReturn(problemEntities);
+        when(mockProblemMapper.toProblemTO(problemEntity1)).thenReturn(problemTo1);
 
         //when
-//        List<ProblemTo> actualProblemTo = problemService.getProblems();
+        List<ProblemTo> actualProblemTo = mockProblemService.getProblems();
 
         //then
-//        assertThat(actualProblemTo).containsExactlyElementsOf(problemTos);
+        assertThat(actualProblemTo).containsExactlyElementsOf(problemTos);
     }
 
     @Test

@@ -3,6 +3,7 @@ package com.akademia.educators_back;
 import com.akademia.educators_back.entity.CategoryEntity;
 import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.to.NewProblemTo;
+import com.akademia.educators_back.to.ProblemTo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -30,11 +31,21 @@ public class TestDataGenerator {
 
     public NewProblemTo getNewProblemTo(){
         return NewProblemTo.builder()
+                .title("titleFromNewTo")
+                .question("questionFromNewTo")
+                .commentsToId(new ArrayList<>())
+                .categoryName("Category")
+                .build();
+    }
+
+    public ProblemTo getProblemTo(){
+        return ProblemTo.builder()
                 .title("titleFromTo")
                 .question("questionFromTo")
                 .commentsToId(new ArrayList<>())
                 .categoryName("Category")
                 .build();
     }
+
 
 }
