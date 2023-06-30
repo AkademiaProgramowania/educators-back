@@ -119,6 +119,19 @@ class ProblemServiceImplTest {
 
     @Test
     void updateProblem() {
+        //given
+        CategoryEntity categoryEntity2 = testDataGenerator.getCategoryEntity();
+        categoryRepository.save(categoryEntity2);
+        ProblemEntity problemEntity2 = testDataGenerator.getProblemEntity(categoryEntity2);
+        problemRepository.save(problemEntity2);
+
+        ProblemTo problemTo2 = testDataGenerator.getProblemToForUpdate();
+
+        //when
+        problemService.updateProblem(problemTo2);
+
+        //then
+        assertEquals(problemRepository.findAll().get(0).getQuestion(), problemTo2.getQuestion());
     }
 
     @Test
@@ -133,7 +146,6 @@ class ProblemServiceImplTest {
 
         List<ProblemTo> problemTos = new ArrayList<>(
                 List.of(problemTo1));
-
 
         when(mockProblemRepository.findAll()).thenReturn(problemEntities);
         when(mockProblemMapper.toProblemTO(problemEntity1)).thenReturn(problemTo1);

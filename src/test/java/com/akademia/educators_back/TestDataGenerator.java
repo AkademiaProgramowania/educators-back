@@ -48,5 +48,15 @@ public class TestDataGenerator {
                 .build();
     }
 
+    public ProblemTo getProblemToForUpdate(){
+        return ProblemTo.builder()
+                .id(1L)
+                .title("new title")
+                .question("new random question")
+                .commentsToId(new ArrayList<>())
+                .categoryName("Category")
+                .build();
+    }
+
 
 }
