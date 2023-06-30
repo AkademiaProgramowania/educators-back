@@ -41,6 +41,18 @@ public class ProblemValidator {
         categoryExistCheck(problemTo);
 //        questionExistCheck(problemTo);
     }
+
+    /**
+     * Performs validation on the problem data used to update exist Problem.
+     *
+     * @param problemTo problem TO is an object with ID representing a problem
+     */
+    public void validExistProblemForUpdate(ProblemTo problemTo){
+        titleLengthCheck(problemTo);
+        questionLengthCheck(problemTo);
+        categoryExistCheck(problemTo);
+        questionExistCheck(problemTo);
+    }
     /**
      * Performs validation on the new problem data.
      *
