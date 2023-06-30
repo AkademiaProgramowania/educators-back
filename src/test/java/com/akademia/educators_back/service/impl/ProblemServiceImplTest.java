@@ -1,7 +1,6 @@
 package com.akademia.educators_back.service.impl;
 
 import com.akademia.educators_back.TestDataGenerator;
-//import com.akademia.educators_back.config.DataLoader;
 import com.akademia.educators_back.entity.CategoryEntity;
 import com.akademia.educators_back.entity.CommentEntity;
 import com.akademia.educators_back.entity.ProblemEntity;
@@ -21,7 +20,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -55,21 +53,7 @@ class ProblemServiceImplTest {
 
     @Mock
     private CategoryRepository mockCategoryRepository;
-//    @Autowired
-//    private ProblemMapper problemMapper;
 
-//    @Autowired
-//    private ProblemValidator problemValidator;
-
-
-
-//    @Autowired
-//    ProblemRepository problemRepo;
-//    @Autowired
-//    CategoryRepository categoryRepo;
-//    NewProblemTo newProblemTo;
-//    ProblemEntity problemEntity;
-    CategoryEntity categoryEntity;
 
     @BeforeEach
     void setUp() {
@@ -95,14 +79,8 @@ class ProblemServiceImplTest {
     }
 
     @Test
-    void testForJul() {
+    void ShouldAddProblemWithCorrectData() {
         //given
-//        newProblemTo = new NewProblemTo();
-//        problemEntity = new ProblemEntity();
-//        categoryEntity = new CategoryEntity();
-
-//        ProblemServiceImpl problemServiceNotMocked = new ProblemServiceImpl(problemRepo, problemMapper, problemValidator, categoryRepo);
-
         CategoryEntity categoryEntity1 = testDataGenerator.getCategoryEntity();
         categoryRepository.save(categoryEntity1);
         ProblemEntity problemEntity1 = testDataGenerator.getProblemEntity(categoryEntity1);
@@ -110,18 +88,13 @@ class ProblemServiceImplTest {
 
         NewProblemTo newProblemTo1 = testDataGenerator.getNewProblemTo();
 
-
-//        when(problemMapper.toProblemEntity(newProblemTo1)).thenReturn(problemEntity1);
-//        doNothing().when(problemValidator).validNewProblem(newProblemTo1);
-//        when(categoryRepository.getCategoryEntityByCategoryName(newProblemTo1.getCategoryName())).thenReturn(categoryEntity);
-//        when(problemRepository.save(problemEntity1)).thenReturn(problemEntity1);
-
         //when
         problemService.addProblem(newProblemTo1);
-        List<ProblemEntity> problemEntities = problemRepository.findAll();
+
         //then
-//        verify(problemRepository).save(problemEntity1);
         assertEquals(problemRepository.findAll().get(1).getQuestion(), newProblemTo1.getQuestion());
+        assertThat(problemRepository).isNotNull();
+        assertThat(problemRepository.findAll()).hasSize(2);
     }
 
     @Test
