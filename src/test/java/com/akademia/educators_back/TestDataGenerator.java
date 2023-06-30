@@ -23,7 +23,7 @@ public class TestDataGenerator {
     public ProblemEntity getProblemEntity(CategoryEntity categoryEntity){
         return ProblemEntity.builder()
                 .title("title")
-                .question("question")
+                .question("random question")
                 .comments(new ArrayList<>())
                 .categoryEntity(categoryEntity)
                 .build();
@@ -40,8 +40,9 @@ public class TestDataGenerator {
 
     public ProblemTo getProblemTo(){
         return ProblemTo.builder()
-                .title("titleFromTo")
-                .question("questionFromTo")
+                .id(1L)
+                .title("title")
+                .question("random question")
                 .commentsToId(new ArrayList<>())
                 .categoryName("Category")
                 .build();

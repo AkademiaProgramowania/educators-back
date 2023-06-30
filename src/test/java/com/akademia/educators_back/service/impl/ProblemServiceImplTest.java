@@ -100,6 +100,21 @@ class ProblemServiceImplTest {
 
     @Test
     void deleteProblem() {
+        //given
+        CategoryEntity categoryEntity1 = testDataGenerator.getCategoryEntity();
+        categoryRepository.save(categoryEntity1);
+        ProblemEntity problemEntity1 = testDataGenerator.getProblemEntity(categoryEntity1);
+        problemRepository.save(problemEntity1);
+
+        ProblemTo problemTo1 = testDataGenerator.getProblemTo();
+
+        //when
+        problemService.deleteProblem(problemTo1);
+        //TODO zmienić walidcję do update i delete problem
+        //then
+//        assertEquals(problemRepository.findAll().get(1).getQuestion(), newProblemTo1.getQuestion());
+//        assertThat(problemRepository).isNotNull();
+        assertThat(problemRepository.findAll()).hasSize(0);
     }
 
     @Test
