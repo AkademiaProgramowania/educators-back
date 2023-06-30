@@ -20,6 +20,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -109,9 +110,7 @@ class ProblemServiceImplTest {
     void shouldGetProblems() {
         //given
         CategoryEntity categoryEntity1 = testDataGenerator.getCategoryEntity();
-        categoryRepository.save(categoryEntity1);
         ProblemEntity problemEntity1 = testDataGenerator.getProblemEntity(categoryEntity1);
-        problemRepository.save(problemEntity1);
         List<ProblemEntity> problemEntities = new ArrayList<>(
                 List.of(problemEntity1));
 
@@ -134,23 +133,19 @@ class ProblemServiceImplTest {
     @Test
     void getProblemByIdWithCorrectProvidedId() {
         //given
-        ProblemEntity firstProblemEntity = new ProblemEntity(1L, "title1", "question1", List.of(new CommentEntity()), new CategoryEntity());
-        ProblemEntity secondProblemEntity = new ProblemEntity(2L, "title2", "question2", List.of(new CommentEntity()), new CategoryEntity());
+        CategoryEntity categoryEntity1 = testDataGenerator.getCategoryEntity();
+        ProblemEntity problemEntity1 = testDataGenerator.getProblemEntity(categoryEntity1);
         List<ProblemEntity> problemEntities = new ArrayList<>(
-                List.of(firstProblemEntity, secondProblemEntity));
+                List.of(problemEntity1));
+        ProblemTo problemTo1 = testDataGenerator.getProblemTo();
 
-        ProblemTo firstProblemTo = new ProblemTo(1L, "title1", "question1", List.of(1L), "category1");
-        ProblemTo secondProblemTo = new ProblemTo(2L, "title1", "question1", List.of(1L), "category1");
-        List<ProblemTo> problemTos = new ArrayList<>(
-                List.of(firstProblemTo, secondProblemTo));
-
-//        when(problemRepository.findById(1L)).thenReturn(Optional.of(firstProblemEntity));
-//        when(problemMapper.toProblemTO(firstProblemEntity)).thenReturn(firstProblemTo);
+        when(mockProblemRepository.findById(1L)).thenReturn(Optional.of(problemEntity1));
+        when(mockProblemMapper.toProblemTO(problemEntity1)).thenReturn(problemTo1);
 
         //when
-//        ProblemTo problemToExpected = problemService.getProblemById(1L);
+        ProblemTo problemToExpected = mockProblemService.getProblemById(1L);
 
         //then
-//        assertEquals(firstProblemTo, problemToExpected);
+        assertEquals(problemTo1, problemToExpected);
     }
 }
