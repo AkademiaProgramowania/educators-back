@@ -30,8 +30,8 @@ public class TestDataGenerator {
 
     public NewProblemTo getNewProblemTo(){
         return NewProblemTo.builder()
-                .title("title")
-                .question("question")
+                .title("titleFromTo")
+                .question("questionFromTo")
                 .commentsToId(new ArrayList<>())
                 .categoryName("Category")
                 .build();
