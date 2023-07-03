@@ -52,7 +52,7 @@ public class ProblemMapper {
     }
 
     /**
-     * Map problem TO object into problem entity
+     * Map problem entity into problem transfer object
      * @param problemEntity Problem entity representing a problem
      * @return problem TO
      */
