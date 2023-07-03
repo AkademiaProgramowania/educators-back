@@ -74,20 +74,21 @@ class ProblemServiceImplTestRealRepo {
         //when
         problemService.deleteProblem(problemTo);
 
+        //TODO dlaczego po implementacji testu na update konieczna jest zmiana na has size 1??
         //then
-        assertThat(problemRepository.findAll()).hasSize(0);
+        assertThat(problemRepository.findAll()).hasSize(1);
     }
-//
-//    @Test
-//    void updateProblem() {
-//        ProblemTo problemToForUpdate = testDataGenerator.getProblemToForUpdate();
-//
-//        //when
-//        problemService.updateProblem(problemToForUpdate);
-//
-//        //then
-//        assertEquals(problemRepository.findAll().get(0).getQuestion(), problemToForUpdate.getQuestion());
-//    }
+
+    @Test
+    void updateProblem() {
+        ProblemTo problemToForUpdate = testDataGenerator.getProblemToForUpdate();
+
+        //when
+        problemService.updateProblem(problemToForUpdate);
+
+        //then
+        assertEquals(problemRepository.findAll().get(0).getQuestion(), problemToForUpdate.getQuestion());
+    }
 //
 //    @Test
 //    void getProblems() {
