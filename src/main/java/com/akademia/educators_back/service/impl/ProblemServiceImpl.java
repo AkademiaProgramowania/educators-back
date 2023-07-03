@@ -47,7 +47,7 @@ public class ProblemServiceImpl implements Problem {
      */
     @Override
     public void deleteProblem(ProblemTo problemTo) {
-        problemValidator.validExistProblem(problemTo);
+//        problemValidator.validExistProblem(problemTo);
         ProblemEntity problemEntity = problemMapper.toProblemEntity(problemTo);
         problemRepository.delete(problemEntity);
     }

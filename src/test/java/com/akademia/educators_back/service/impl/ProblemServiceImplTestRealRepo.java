@@ -50,11 +50,12 @@ class ProblemServiceImplTestRealRepo {
         problemTo = testDataGenerator.getProblemTo();
     }
 
-//    @AfterEach
-//    void tearDown() {
-//        categoryRepository.deleteAll();
-//        problemRepository.deleteAll();
-//    }
+    @AfterEach
+    void tearDown() {
+        problemRepository.deleteAll();
+        categoryRepository.deleteAll();
+        System.out.println(problemRepository.findAll().toString());
+    }
 
     @Test
     void addProblem() {
@@ -64,16 +65,18 @@ class ProblemServiceImplTestRealRepo {
         assertEquals(problemRepository.findAll().get(1).getQuestion(), newProblemTo.getQuestion());
         assertThat(problemRepository).isNotNull();
         assertThat(problemRepository.findAll()).hasSize(2);
+        System.out.println(problemRepository.findAll());
     }
-//
-//    @Test
-//    void deleteProblem() {
-//        //when
-//        problemService.deleteProblem(problemTo);
-//
-//        //then
-//        assertThat(problemRepository.findAll()).hasSize(0);
-//    }
+
+    @Test
+    void deleteProblem() {
+        System.out.println(problemRepository.findAll());
+        //when
+        problemService.deleteProblem(problemTo);
+
+        //then
+        assertThat(problemRepository.findAll()).hasSize(0);
+    }
 //
 //    @Test
 //    void updateProblem() {
