@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Controller for handling request add Problems object.
+ * Controller for handling request on Problems object.
  */
 @RequestMapping("api/problems")
 @RestController
