@@ -2,6 +2,7 @@ package com.akademia.educators_back.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
 
 import java.util.List;
 

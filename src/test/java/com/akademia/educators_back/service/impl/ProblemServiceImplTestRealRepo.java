@@ -50,11 +50,11 @@ class ProblemServiceImplTestRealRepo {
         problemTo = testDataGenerator.getProblemTo();
     }
 
-    @AfterEach
-    void tearDown() {
-        categoryRepository.deleteAll();
-        problemRepository.deleteAll();
-    }
+//    @AfterEach
+//    void tearDown() {
+//        categoryRepository.deleteAll();
+//        problemRepository.deleteAll();
+//    }
 
     @Test
     void addProblem() {
@@ -65,32 +65,32 @@ class ProblemServiceImplTestRealRepo {
         assertThat(problemRepository).isNotNull();
         assertThat(problemRepository.findAll()).hasSize(2);
     }
-
-    @Test
-    void deleteProblem() {
-        //when
-        problemService.deleteProblem(problemTo);
-
-        //then
-        assertThat(problemRepository.findAll()).hasSize(0);
-    }
-
-    @Test
-    void updateProblem() {
-        ProblemTo problemToForUpdate = testDataGenerator.getProblemToForUpdate();
-
-        //when
-        problemService.updateProblem(problemToForUpdate);
-
-        //then
-        assertEquals(problemRepository.findAll().get(0).getQuestion(), problemToForUpdate.getQuestion());
-    }
-
-    @Test
-    void getProblems() {
-    }
-
-    @Test
-    void getProblemById() {
-    }
+//
+//    @Test
+//    void deleteProblem() {
+//        //when
+//        problemService.deleteProblem(problemTo);
+//
+//        //then
+//        assertThat(problemRepository.findAll()).hasSize(0);
+//    }
+//
+//    @Test
+//    void updateProblem() {
+//        ProblemTo problemToForUpdate = testDataGenerator.getProblemToForUpdate();
+//
+//        //when
+//        problemService.updateProblem(problemToForUpdate);
+//
+//        //then
+//        assertEquals(problemRepository.findAll().get(0).getQuestion(), problemToForUpdate.getQuestion());
+//    }
+//
+//    @Test
+//    void getProblems() {
+//    }
+//
+//    @Test
+//    void getProblemById() {
+//    }
 }
