@@ -47,11 +47,10 @@ public class ProblemValidator {
      *
      * @param problemTo problem TO is an object with ID representing a problem
      */
-    public void validExistProblemForUpdate(ProblemTo problemTo){
+    public void validExistProblemForUpdateAndDelete(ProblemTo problemTo){
         titleLengthCheck(problemTo);
         questionLengthCheck(problemTo);
         categoryExistCheck(problemTo);
-        questionExistCheck(problemTo);
     }
 
     /**
