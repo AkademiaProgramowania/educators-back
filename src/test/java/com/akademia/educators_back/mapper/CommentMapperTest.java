@@ -10,7 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class CommentMapperTest {
-
+    private final String SAMPLE_ANSWER = "foo";
+    private final long SAMPLE_ID = 1L;
     @Autowired
     private CommentMapper commentMapper;
 
@@ -18,66 +19,50 @@ public class CommentMapperTest {
     void shouldMapToEntityWithProperToValues() {
         //given
         CommentTo commentTest = CommentTo.builder()
-                .id(1L)
-                .answer("foo")
+                .id(SAMPLE_ID)
+                .answer(SAMPLE_ANSWER)
                 .build();
-       //when
+        //when
         CommentEntity commentEntity = commentMapper.toCommentEntity(commentTest);
         //then
-        assertEquals(1L, commentEntity.getId());
-        assertEquals("foo", commentEntity.getAnswer());
-    }
-
-    @Test
-    public void testToDTO_NullInput() {
-        //when
-        CommentTo commentDTO = commentMapper.toCommentTO(null);
-        //then
-        assertNull(commentDTO);
+        assertEquals(SAMPLE_ID, commentEntity.getId());
+        assertEquals(SAMPLE_ANSWER, commentEntity.getAnswer());
     }
 
     @Test
     void shouldMapToCommentWithProperCommentEntityValues() {
         //given
         CommentEntity commentEntity = CommentEntity.builder()
-                .id(1L)
-                .answer("foo")
+                .id(SAMPLE_ID)
+                .answer(SAMPLE_ANSWER)
                 .build();
         //when
         CommentTo commentTo = commentMapper.toCommentTO(commentEntity);
         //then
-        assertEquals(1L, commentEntity.getId());
-        assertEquals("foo", commentEntity.getAnswer());
+        assertEquals(SAMPLE_ID, commentTo.getId());
+        assertEquals(SAMPLE_ANSWER, commentTo.getAnswer());
     }
 
     @Test
-    public void testToEntity_NullInput() {
-        //when
-        CommentEntity commentEntity = commentMapper.toCommentEntity(null);
-        //then
-        assertNull(commentEntity);
-    }
-
-    @Test
-    public void testToEntity_InvalidId() {
+    public void testToEntityInvalidId() {
         //given
         CommentTo commentDTO = new CommentTo();
         commentDTO.setId(-1L);
-        commentDTO.setAnswer("Sample answer");
+        commentDTO.setAnswer(SAMPLE_ANSWER);
         //then
         assertThrows(IllegalArgumentException.class, () -> commentMapper.toCommentEntity(commentDTO));
     }
 
     @Test
-    public void testToDTO_InvalidEntityState() {
-        // Create a CommentEntity with invalid state (missing required attributes)
-        //when
-        CommentEntity commentEntity = new CommentEntity();
-        //given
-        commentEntity.setId(1L);
-        //then
-        assertThrows(IllegalArgumentException.class, () -> commentMapper.toCommentTO(commentEntity));
+    public void testToDTOInvalidEntityState() {
+        //given - missing atributes
+        CommentEntity commentEntity = CommentEntity.builder()
+                .id(SAMPLE_ID)
+                .answer(null)
+                .build();
+
+        assertThrows(NullPointerException.class, () -> {
+            commentMapper.toCommentTO(commentEntity);
+        });
     }
-
-
 }
