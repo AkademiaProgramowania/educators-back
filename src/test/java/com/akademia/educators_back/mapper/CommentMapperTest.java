@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class CommentMapperTest {
+class CommentMapperTest {
     private final String SAMPLE_ANSWER = "foo";
     private final long SAMPLE_ID = 1L;
     @Autowired
@@ -44,7 +44,7 @@ public class CommentMapperTest {
     }
 
     @Test
-    public void testToEntityInvalidId() {
+    void testToEntityInvalidId() {
         //given
         CommentTo commentDTO = new CommentTo();
         commentDTO.setId(-1L);
@@ -54,7 +54,7 @@ public class CommentMapperTest {
     }
 
     @Test
-    public void testToDTOInvalidEntityState() {
+    void testToDTOInvalidEntityState() {
         //given - missing atributes
         CommentEntity commentEntity = CommentEntity.builder()
                 .id(SAMPLE_ID)
