@@ -35,4 +35,11 @@ public interface Category {
      * @param categoryTo
      */
     void updateCategory(CategoryTo categoryTo);
+
+    /**
+     * Delete exist Category object
+     * Throws: IllegalArgumentException – in case the given ids or one of its elements is null.
+     * @param categoryTo
+     */
+    void deleteCategory(CategoryTo categoryTo);
 }

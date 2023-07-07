@@ -69,4 +69,14 @@ public class CategoryController {
     void changeExistingCategory(@RequestBody CategoryTo categoryTo){
         categoryService.updateCategory(categoryTo);
     }
+
+    /**
+     * Controller responsible for update exist Category
+     * @param categoryTo The CategoryTo is an object representing exist category.
+     */
+    @DeleteMapping("/delete")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    void removeCategory(@RequestBody CategoryTo categoryTo){
+        categoryService.deleteCategory(categoryTo);
+    }
 }

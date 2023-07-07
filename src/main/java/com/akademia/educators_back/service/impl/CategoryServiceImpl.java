@@ -74,4 +74,14 @@ public class CategoryServiceImpl implements Category {
         categoryRepository.save(categoryEntity);
     }
 
+    /**
+     * Delete exist category
+     * @param categoryTo category TO is an object with ID representing a category
+     */
+    @Override
+    public void deleteCategory(CategoryTo categoryTo) {
+        CategoryEntity categoryEntity = categoryMapper.toCategoryEntity(categoryTo);
+        categoryRepository.delete(categoryEntity);
+    }
+
 }
