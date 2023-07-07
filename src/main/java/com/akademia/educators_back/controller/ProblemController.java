@@ -71,4 +71,14 @@ public class ProblemController {
     void changeExistingProblem(@RequestBody ProblemTo problemTo){
         problemService.updateProblem(problemTo);
     }
+
+    /**
+     * Controller responsible for update exist Problem
+     * @param problemTo The ProblemTo is an object representing exist problem.
+     */
+    @DeleteMapping("/delete")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    void removeProblem(@RequestBody ProblemTo problemTo){
+        problemService.deleteProblem(problemTo);
+    }
 }

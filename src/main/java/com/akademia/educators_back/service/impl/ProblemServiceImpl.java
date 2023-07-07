@@ -47,7 +47,7 @@ public class ProblemServiceImpl implements Problem {
      */
     @Override
     public void deleteProblem(ProblemTo problemTo) {
-        problemValidator.validExistProblem(problemTo);
+        problemValidator.validExistProblemForUpdateAndDelete(problemTo);
         ProblemEntity problemEntity = problemMapper.toProblemEntity(problemTo);
         problemRepository.delete(problemEntity);
     }
@@ -59,7 +59,7 @@ public class ProblemServiceImpl implements Problem {
      */
     @Override
     public void updateProblem(ProblemTo problemTo) {
-        problemValidator.validExistProblem(problemTo);
+        problemValidator.validExistProblemForUpdateAndDelete(problemTo);
         ProblemEntity problemEntity;
         problemEntity = problemRepository.findById(problemTo.getId()).orElseThrow(()->new ProblemDoesNotExistException(problemTo.getId()));
         problemEntity.setQuestion(problemTo.getQuestion());
