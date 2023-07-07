@@ -61,4 +61,17 @@ public class CategoryServiceImpl implements Category {
         return categoryMapper.toCategoryTO(categoryEntity);
     }
 
+    /**
+     * Update exist category
+     * Throws: CategoryDoesNotExistException when category with given id does not exist
+     * @param categoryTo category TO is an object with ID representing a category
+     */
+    @Override
+    public void updateCategory(CategoryTo categoryTo) {
+        CategoryEntity categoryEntity;
+        categoryEntity = categoryRepository.findById(categoryTo.getId()).orElseThrow(()->new CategoryDoesNotExistException(categoryTo.getId()));
+        categoryEntity.setCategoryName(categoryTo.getCategoryName());
+        categoryRepository.save(categoryEntity);
+    }
+
 }

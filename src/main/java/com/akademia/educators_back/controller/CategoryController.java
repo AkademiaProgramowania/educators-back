@@ -59,4 +59,14 @@ public class CategoryController {
         }
         return categoryTo;
     }
+
+    /**
+     * Controller responsible for update exist Category
+     * @param categoryTo The CategoryTo is an object representing exist category.
+     */
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    void changeExistingCategory(@RequestBody CategoryTo categoryTo){
+        categoryService.updateCategory(categoryTo);
+    }
 }

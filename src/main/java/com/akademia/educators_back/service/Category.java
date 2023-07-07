@@ -28,4 +28,11 @@ public interface Category {
      * @return exist CategoryTo
      */
     CategoryTo getCategoryById(Long id);
+
+    /**
+     * Update exist Category object
+     * Throws: IllegalArgumentException – in case the given ids or one of is elements is null.
+     * @param categoryTo
+     */
+    void updateCategory(CategoryTo categoryTo);
 }
