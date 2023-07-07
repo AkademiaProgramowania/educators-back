@@ -1,5 +1,7 @@
 package com.akademia.educators_back.controller;
 
+import com.akademia.educators_back.exception.CategoryDoesNotExistException;
+import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.service.impl.CategoryServiceImpl;
 import com.akademia.educators_back.to.CategoryTo;
 import com.akademia.educators_back.to.NewCategoryTo;
@@ -39,5 +41,22 @@ public class CategoryController {
     @GetMapping("/list")
     public ResponseEntity<List<CategoryTo>> getCategories(){
         return ResponseEntity.ok().body(categoryService.getCategories());
+    }
+
+    /**
+     * Cotroller responsible for get single Category with provided param.
+     * @param id ID is unique number which represent every one category.
+     * @return The CategoryTo witch unique ID
+     * @throws Exception when there is no category which provided ID.
+     */
+    @GetMapping("/{id}")
+    public CategoryTo findCategoryById(@PathVariable Long id){
+        CategoryTo categoryTo;
+        try {
+            categoryTo = categoryService.getCategoryById(id);
+        }catch (CategoryDoesNotExistException e){
+            throw new ProblemDoesNotExistException(id);
+        }
+        return categoryTo;
     }
 }

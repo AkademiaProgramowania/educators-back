@@ -22,4 +22,10 @@ public interface Category {
      * @return List of exist CategoryTo
      */
     List<CategoryTo> getCategories();
+
+    /**
+     * Get single exist Category object
+     * @return exist CategoryTo
+     */
+    CategoryTo getCategoryById(Long id);
 }

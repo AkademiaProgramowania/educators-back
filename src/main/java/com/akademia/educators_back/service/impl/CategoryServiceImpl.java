@@ -2,6 +2,8 @@ package com.akademia.educators_back.service.impl;
 
 import com.akademia.educators_back.entity.CategoryEntity;
 import com.akademia.educators_back.entity.ProblemEntity;
+import com.akademia.educators_back.exception.CategoryDoesNotExistException;
+import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.mapper.CategoryMapper;
 import com.akademia.educators_back.repository.CategoryRepository;
 import com.akademia.educators_back.service.Category;
@@ -47,4 +49,16 @@ public class CategoryServiceImpl implements Category {
         }
         return categoriesTo;
     }
+
+    /**
+     * Get single category with provided param.
+     * Throws: CategoryDoesNotExistException when category with given id does not exist
+     * @param id ID is unique number which represent every one category.
+     */
+    @Override
+    public CategoryTo getCategoryById(Long id) {
+        CategoryEntity categoryEntity = categoryRepository.findById(id).orElseThrow(()->new CategoryDoesNotExistException(id));
+        return categoryMapper.toCategoryTO(categoryEntity);
+    }
+
 }
