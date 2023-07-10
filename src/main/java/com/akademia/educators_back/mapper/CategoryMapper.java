@@ -27,7 +27,7 @@ public class CategoryMapper {
      * @param categoryEntity Category entity representing a category
      * @return new category TO
      */
-    public NewCategoryTo toNewCategoryTO(CategoryEntity categoryEntity){
+    public NewCategoryTo toNewCategoryTo(CategoryEntity categoryEntity){
         NewCategoryTo newCategoryTo = new NewCategoryTo();
         newCategoryTo.setCategoryName(categoryEntity.getCategoryName());
         return newCategoryTo;
@@ -52,7 +52,7 @@ public class CategoryMapper {
      * @param categoryEntity Category entity representing a category
      * @return category TO
      */
-    public CategoryTo toCategoryTO(CategoryEntity categoryEntity){
+    public CategoryTo toCategoryTo(CategoryEntity categoryEntity){
         CategoryTo categoryTo = new CategoryTo();
         if(categoryEntity != null){
             categoryTo.setId(categoryEntity.getId());

@@ -77,7 +77,7 @@ public class ProblemServiceImpl implements Problem {
         List<ProblemTo> problemsTo = new ArrayList<>();
         List<ProblemEntity> problemsEntity = problemRepository.findAll();
         for (ProblemEntity problem : problemsEntity){
-            problemsTo.add(problemMapper.toProblemTO(problem));
+            problemsTo.add(problemMapper.toProblemTo(problem));
         }
         return problemsTo;
     }
@@ -90,7 +90,7 @@ public class ProblemServiceImpl implements Problem {
     @Override
     public ProblemTo getProblemById(Long id) {
         ProblemEntity problemEntity = problemRepository.findById(id).orElseThrow(()->new ProblemDoesNotExistException(id));
-        return problemMapper.toProblemTO(problemEntity);
+        return problemMapper.toProblemTo(problemEntity);
     }
 
     private CategoryEntity findCategoryEntity(String categoryName){

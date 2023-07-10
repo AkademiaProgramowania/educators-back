@@ -1,15 +1,12 @@
 package com.akademia.educators_back.service.impl;
 
 import com.akademia.educators_back.entity.CategoryEntity;
-import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.exception.CategoryDoesNotExistException;
-import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.mapper.CategoryMapper;
 import com.akademia.educators_back.repository.CategoryRepository;
 import com.akademia.educators_back.service.Category;
 import com.akademia.educators_back.to.CategoryTo;
 import com.akademia.educators_back.to.NewCategoryTo;
-import com.akademia.educators_back.to.ProblemTo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +42,7 @@ public class CategoryServiceImpl implements Category {
         List<CategoryTo> categoriesTo = new ArrayList<>();
         List<CategoryEntity> categoriesEntity = categoryRepository.findAll();
         for (CategoryEntity category : categoriesEntity){
-            categoriesTo.add(categoryMapper.toCategoryTO(category));
+            categoriesTo.add(categoryMapper.toCategoryTo(category));
         }
         return categoriesTo;
     }
@@ -58,7 +55,7 @@ public class CategoryServiceImpl implements Category {
     @Override
     public CategoryTo getCategoryById(Long id) {
         CategoryEntity categoryEntity = categoryRepository.findById(id).orElseThrow(()->new CategoryDoesNotExistException(id));
-        return categoryMapper.toCategoryTO(categoryEntity);
+        return categoryMapper.toCategoryTo(categoryEntity);
     }
 
     /**

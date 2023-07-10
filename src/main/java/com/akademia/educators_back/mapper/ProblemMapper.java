@@ -28,7 +28,7 @@ public class ProblemMapper {
      * @param problemEntity Problem entity representing a problem
      * @return new problem TO
      */
-    public NewProblemTo toNewProblemTO(ProblemEntity problemEntity){
+    public NewProblemTo toNewProblemTo(ProblemEntity problemEntity){
         NewProblemTo newProblemTo = new NewProblemTo();
         newProblemTo.setTitle(problemEntity.getTitle());
         newProblemTo.setQuestion(problemEntity.getQuestion());
@@ -56,7 +56,7 @@ public class ProblemMapper {
      * @param problemEntity Problem entity representing a problem
      * @return problem TO
      */
-    public ProblemTo toProblemTO(ProblemEntity problemEntity){
+    public ProblemTo toProblemTo(ProblemEntity problemEntity){
         ProblemTo problemTo = new ProblemTo();
         if(problemEntity != null){
             problemTo.setId(problemEntity.getId());
