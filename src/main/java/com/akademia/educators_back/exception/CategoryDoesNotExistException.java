@@ -6,7 +6,7 @@ public class CategoryDoesNotExistException extends RuntimeException{
         super("Category " + name + " does not exist" );
     }
 
-    public CategoryDoesNotExistException(Long id) {
+    public CategoryDoesNotExistException(long id) {
         super("Category with id: " + id + " not exist"  );
     }
 }

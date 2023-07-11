@@ -55,7 +55,7 @@ public class CategoryController {
         try {
             categoryTo = categoryService.getCategoryById(id);
         }catch (CategoryDoesNotExistException e){
-            throw new ProblemDoesNotExistException(id);
+            throw new CategoryDoesNotExistException(id);
         }
         return categoryTo;
     }
