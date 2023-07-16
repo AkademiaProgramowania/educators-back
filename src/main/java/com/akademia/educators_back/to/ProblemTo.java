@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProblemTo {
 
-    private long id;
+    private Long id;
     private String title;
     private String question;
     private List<Long> commentsToId;
