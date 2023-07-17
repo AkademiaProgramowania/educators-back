@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Controller for handling request add Problems object.
+ * Controller for handling request on Problems object.
  */
 @RequestMapping("api/problems")
 @RestController
@@ -38,7 +38,7 @@ public class ProblemController {
      * Cotroller responsible for get single Problem with provided param.
      * @param id ID is unique number which represent every one problem.
      * @return The ProblemTo witch unique ID
-     * @throws Exception when there in no problem which provided ID.
+     * @throws Exception when there is no problem which provided ID.
      */
     @GetMapping("/{id}")
     public ProblemTo findProblemById(@PathVariable Long id){
