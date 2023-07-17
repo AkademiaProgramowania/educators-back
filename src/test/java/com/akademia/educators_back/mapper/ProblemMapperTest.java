@@ -36,7 +36,7 @@ class ProblemMapperTest {
         problemEntity.setCategoryEntity(categoryEntity);
 
         //when
-        NewProblemTo newProblemTo = problemMapper.toNewProblemTO(problemEntity);
+        NewProblemTo newProblemTo = problemMapper.toNewProblemTo(problemEntity);
 
         //then
         assertEquals(TITLE, newProblemTo.getTitle());
@@ -63,7 +63,7 @@ class ProblemMapperTest {
         problemEntity.setCategoryEntity(categoryEntity);
 
         //when
-        ProblemTo problemTo = problemMapper.toProblemTO(problemEntity);
+        ProblemTo problemTo = problemMapper.toProblemTo(problemEntity);
 
         //then
         assertEquals(Long.valueOf(1L), problemTo.getId());

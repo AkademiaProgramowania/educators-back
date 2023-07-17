@@ -76,7 +76,7 @@ class ProblemServiceImplTestVerify {
     void verifyMethodToDeleteProblemWithCorrectData() {
         //given
         when(mockProblemMapper.toProblemEntity(problemToForMock)).thenReturn(problemEntityForMock);
-        doNothing().when(mockProblemValidator).validExistProblem(problemToForMock);
+        doNothing().when(mockProblemValidator).validExistProblemForUpdateAndDelete(problemToForMock);
 
         //when
         mockProblemService.deleteProblem(problemToForMock);
@@ -88,7 +88,7 @@ class ProblemServiceImplTestVerify {
     @Test
     void verifyMethodToUpdateProblemWithCorrectData() {
         //given
-        doNothing().when(mockProblemValidator).validExistProblem(problemToForMock);
+        doNothing().when(mockProblemValidator).validExistProblemForUpdateAndDelete(problemToForMock);
         when(mockProblemRepository.findById(problemToForMock.getId())).thenReturn(Optional.of(problemEntityForMock));
 
         //when
@@ -109,7 +109,7 @@ class ProblemServiceImplTestVerify {
                 List.of(problemToForMock));
 
         when(mockProblemRepository.findAll()).thenReturn(problemEntities);
-        when(mockProblemMapper.toProblemTO(problemEntityForMock)).thenReturn(problemToForMock);
+        when(mockProblemMapper.toProblemTo(problemEntityForMock)).thenReturn(problemToForMock);
 
         //when
         List<ProblemTo> actualProblemTo = mockProblemService.getProblems();
@@ -123,7 +123,7 @@ class ProblemServiceImplTestVerify {
     void verifyMethodToGetOneWithCorrectData() {
         //given
         when(mockProblemRepository.findById(1L)).thenReturn(Optional.of(problemEntityForMock));
-        when(mockProblemMapper.toProblemTO(problemEntityForMock)).thenReturn(problemToForMock);
+        when(mockProblemMapper.toProblemTo(problemEntityForMock)).thenReturn(problemToForMock);
 
         //when
         ProblemTo problemToExpected = mockProblemService.getProblemById(1L);
