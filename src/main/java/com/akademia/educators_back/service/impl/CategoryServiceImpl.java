@@ -7,6 +7,7 @@ import com.akademia.educators_back.repository.CategoryRepository;
 import com.akademia.educators_back.service.Category;
 import com.akademia.educators_back.to.CategoryTo;
 import com.akademia.educators_back.to.NewCategoryTo;
+import com.akademia.educators_back.validator.CategoryValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ public class CategoryServiceImpl implements Category {
     private CategoryRepository categoryRepository;
 
     private CategoryMapper categoryMapper;
+    private CategoryValidator categoryValidator;
 
     /**
      * Add new category
@@ -30,6 +32,7 @@ public class CategoryServiceImpl implements Category {
      */
     @Override
     public void addCategory(NewCategoryTo newCategoryTo) {
+        categoryValidator.categoryExistCheck(newCategoryTo);
         CategoryEntity categoryEntity = categoryMapper.toCategoryEntity(newCategoryTo);
         categoryRepository.save(categoryEntity);
     }
@@ -65,6 +68,7 @@ public class CategoryServiceImpl implements Category {
      */
     @Override
     public void updateCategory(CategoryTo categoryTo) {
+        categoryValidator.categoryExistCheck(categoryTo);
         CategoryEntity categoryEntity;
         categoryEntity = categoryRepository.findById(categoryTo.getId()).orElseThrow(()->new CategoryDoesNotExistException(categoryTo.getId()));
         categoryEntity.setCategoryName(categoryTo.getCategoryName());
@@ -77,6 +81,7 @@ public class CategoryServiceImpl implements Category {
      */
     @Override
     public void deleteCategory(CategoryTo categoryTo) {
+        categoryValidator.categoryExistCheck(categoryTo);
         CategoryEntity categoryEntity = categoryMapper.toCategoryEntity(categoryTo);
         categoryRepository.delete(categoryEntity);
     }
