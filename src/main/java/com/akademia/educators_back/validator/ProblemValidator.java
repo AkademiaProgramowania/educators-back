@@ -121,7 +121,7 @@ public class ProblemValidator {
     }
 
     /**
-     * Check if the question exist new problem exist
+     * Check if the question of exist problem exist
      * @param problemTo problem TO is an object with ID representing a problem
      */
     private void questionExistCheck(ProblemTo problemTo) {

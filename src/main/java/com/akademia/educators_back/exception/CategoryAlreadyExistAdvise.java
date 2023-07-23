@@ -5,22 +5,21 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
 /**
- * Class for handling exceptions related to existing problems
+ * Class for handling exceptions related to existing category
  */
 @ControllerAdvice
-public class ProblemAlreadyExistAdvise {
+public class CategoryAlreadyExistAdvise {
 
     /**
-     * Exception handler for ProblemAlreadyExistException
-     * @param e the ProblemAlreadyExistException instance
+     * Exception handler for CategoryAlreadyExistException
+     * @param e the CategoryAlreadyExistException instance
      * @return message associated with the exception
      */
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(ProblemAlreadyExistException.class)
-    public String exceptionHandler(ProblemAlreadyExistException e){
+    @ExceptionHandler(CategoryAlreadyExistException.class)
+    public String exceptionHandler(CategoryAlreadyExistException e){
         return e.getMessage();
     }
 }
