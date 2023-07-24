@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * Class for handling exceptions related to existing problems
  */
 @ControllerAdvice
-public class ProblemAlreadyExistAdvise {
+public class ProblemAdvise {
 
     /**
      * Exception handler for ProblemAlreadyExistException
@@ -20,7 +20,19 @@ public class ProblemAlreadyExistAdvise {
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ProblemAlreadyExistException.class)
-    public String exceptionHandler(ProblemAlreadyExistException e){
+    public String problemAlreadyExistExceptionHandler(ProblemAlreadyExistException e){
+        return e.getMessage();
+    }
+
+    /**
+     Exception handler for ProblemDoesNotExistException
+     * @param e the ProblemDoesNotExistException instance
+     * @return message associated with the exception
+     */
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ProblemDoesNotExistException.class)
+    public String problemDoesNotExistExceptionHandler(ProblemDoesNotExistException e){
         return e.getMessage();
     }
 }
