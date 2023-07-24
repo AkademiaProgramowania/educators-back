@@ -120,7 +120,7 @@ class ProblemServiceImplTestVerify {
     }
 
     @Test
-    void verifyMethodToGetOneWithCorrectData() {
+    void verifyMethodToGetOneProblemWithCorrectData() {
         //given
         when(mockProblemRepository.findById(1L)).thenReturn(Optional.of(problemEntityForMock));
         when(mockProblemMapper.toProblemTo(problemEntityForMock)).thenReturn(problemToForMock);

@@ -2,6 +2,8 @@ package com.akademia.educators_back;
 
 import com.akademia.educators_back.entity.CategoryEntity;
 import com.akademia.educators_back.entity.ProblemEntity;
+import com.akademia.educators_back.to.CategoryTo;
+import com.akademia.educators_back.to.NewCategoryTo;
 import com.akademia.educators_back.to.NewProblemTo;
 import com.akademia.educators_back.to.ProblemTo;
 import lombok.AllArgsConstructor;
@@ -17,6 +19,21 @@ public class TestDataGenerator {
         return CategoryEntity.builder()
                 .categoryName("Category")
                 .problems(new ArrayList<>())
+                .build();
+    }
+
+    public NewCategoryTo getNewCategoryTo(){
+        return NewCategoryTo.builder()
+                .categoryName("New Category title")
+                .problemsToId(new ArrayList<>())
+                .build();
+    }
+
+    public CategoryTo getCategoryTo(){
+        return CategoryTo.builder()
+                .id(1L)
+                .categoryName("Category title")
+                .problemsToId(new ArrayList<>())
                 .build();
     }
 
