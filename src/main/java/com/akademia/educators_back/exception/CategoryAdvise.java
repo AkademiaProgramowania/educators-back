@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * Class for handling exceptions related to existing category
  */
 @ControllerAdvice
-public class CategoryAlreadyExistAdvise {
+public class CategoryAdvise {
 
     /**
      * Exception handler for CategoryAlreadyExistException
@@ -19,7 +19,20 @@ public class CategoryAlreadyExistAdvise {
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(CategoryAlreadyExistException.class)
-    public String exceptionHandler(CategoryAlreadyExistException e){
+    public String categoryAlreadyExistExceptionHandler(CategoryAlreadyExistException e){
         return e.getMessage();
     }
+
+    /**
+     * Exception handler for CategoryDoesNotExistException
+     * @param e the CategoryDoesNotExistException instance
+     * @return message associated with the exception
+     */
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(CategoryDoesNotExistException.class)
+    public String categoryDoesNotExistExceptionHandler(CategoryDoesNotExistException e){
+        return e.getMessage();
+    }
+
 }
