@@ -1,0 +1,6 @@
+openapi: "3.0.1"
+info:
+  title: "A minimal OpenAPI document"
+  version: "6.6.0"
+paths: {}
+

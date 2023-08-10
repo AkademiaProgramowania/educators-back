@@ -66,22 +66,50 @@
 					</excludes>
 				</configuration>
 			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.openapitools</groupId>-->
+<!--				<artifactId>openapi-generator-maven-plugin</artifactId>-->
+<!--				&lt;!&ndash; RELEASE_VERSION &ndash;&gt;-->
+<!--				<version>6.6.0</version>-->
+<!--				&lt;!&ndash; /RELEASE_VERSION &ndash;&gt;-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<goals>-->
+<!--							<goal>generate</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--&lt;!&ndash;							<inputSpec>${project.basedir}/src/main/resources/openApi.yaml</inputSpec>&ndash;&gt;-->
+<!--							<inputSpec>src/main/resources/openApi.yaml</inputSpec>-->
+<!--							<generatorName>java</generatorName>-->
+<!--							<configOptions>-->
+<!--								<sourceFolder>src/gen/java/main</sourceFolder>-->
+<!--							</configOptions>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<!-- RELEASE_VERSION -->
 				<version>6.6.0</version>
-				<!-- /RELEASE_VERSION -->
 				<executions>
 					<execution>
 						<goals>
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
-							<generatorName>java</generatorName>
+							<inputSpec>
+								${project.basedir}/src/main/resources/openApi.yaml
+							</inputSpec>
+							<generatorName>spring</generatorName>
+							<apiPackage>com.openapi.gen.springboot.api</apiPackage>
+							<modelPackage>com.openapi.gen.springboot.dto</modelPackage>
+							<supportingFilesToGenerate>
+								ApiUtil.java
+							</supportingFilesToGenerate>
 							<configOptions>
-								<sourceFolder>src/gen/java/main</sourceFolder>
+								<delegatePattern>true</delegatePattern>
+								<serializableModel>true</serializableModel>
 							</configOptions>
 						</configuration>
 					</execution>
