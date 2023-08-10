@@ -54,6 +54,14 @@ public class CommentServiceImpl implements Comment {
         return commentToList;
     }
 
+  /*  @Override
+    public CommentTo getCommentById(Long id) {
+        CommentEntity commentEntity = commentRepository.findById(id)
+                .orElseThrow(() -> new CommentDoesNotExistException("Comment does not exist"));
+
+        return commentMapper.toCommentTO(commentEntity);
+    }*/
+
     @Override
     public CommentTo getCommentById(Long id) {
         Optional<CommentEntity> commentOptional = commentRepository.findById(id);
