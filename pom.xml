@@ -68,9 +68,7 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
-
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -85,28 +83,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-<!--			<plugin>-->
-<!--				<groupId>org.openapitools</groupId>-->
-<!--				<artifactId>openapi-generator-maven-plugin</artifactId>-->
-<!--				&lt;!&ndash; RELEASE_VERSION &ndash;&gt;-->
-<!--				<version>6.6.0</version>-->
-<!--				&lt;!&ndash; /RELEASE_VERSION &ndash;&gt;-->
-<!--				<executions>-->
-<!--					<execution>-->
-<!--						<goals>-->
-<!--							<goal>generate</goal>-->
-<!--						</goals>-->
-<!--						<configuration>-->
-<!--&lt;!&ndash;							<inputSpec>${project.basedir}/src/main/resources/openApi.yaml</inputSpec>&ndash;&gt;-->
-<!--							<inputSpec>src/main/resources/openApi.yaml</inputSpec>-->
-<!--							<generatorName>java</generatorName>-->
-<!--							<configOptions>-->
-<!--								<sourceFolder>src/gen/java/main</sourceFolder>-->
-<!--							</configOptions>-->
-<!--						</configuration>-->
-<!--					</execution>-->
-<!--				</executions>-->
-<!--			</plugin>-->
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
@@ -122,7 +98,7 @@
 							</inputSpec>
 							<generatorName>spring</generatorName>
 							<apiPackage>com.openapi.gen.springboot.api</apiPackage>
-							<modelPackage>com.openapi.gen.springboot.dto</modelPackage>
+							<modelPackage>com.openapi.gen.springboot.to</modelPackage>
 							<supportingFilesToGenerate>
 								ApiUtil.java
 							</supportingFilesToGenerate>

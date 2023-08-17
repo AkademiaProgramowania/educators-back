@@ -30,7 +30,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemTo'
+                $ref: '#/components/schemas/ProblemOpenApiTo'
 
   /problems/add:
     post:
@@ -42,7 +42,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProblemTo'
+              $ref: '#/components/schemas/ProblemOpenApiTo'
       parameters:
         - in: query
           name: id
@@ -62,8 +62,8 @@ paths:
 
 components:
   schemas:
-    ProblemTo:
-      description: Data element for Problem
+    ProblemOpenApiTo:
+      description: Data element for Problem from Open Api
       type: object
       properties:
         id:
@@ -77,8 +77,8 @@ components:
         categoryName:
           type: string
 
-    AnotherProblemTo:
-      description: Data element for another Problem
+    AnotherProblemOpenApiTo:
+      description: Data element for another Problem from Open Api
       type: object
       properties:
         id:
