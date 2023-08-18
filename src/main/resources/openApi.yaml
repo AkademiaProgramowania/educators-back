@@ -1,0 +1,93 @@
+openapi: "3.0.1"
+
+info:
+  title: "Sample Api"
+  description: Problem API
+  version: '1.0'
+
+servers:
+  - url: http://localhost:8080/api
+    description: Local server url
+
+paths:
+  /problems/{id}:
+    get:
+      summary: Get Problem By Id
+      operationId: getProblemById
+      tags:
+        - ProblemTo
+      description: Endpoint for getting ProblemTo with requested id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Unique Id of an Problem
+      responses:
+        200:
+          description: Searched successfuly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemOpenApiTo'
+
+  /problems/add:
+    post:
+      operationId: saveProblem
+      description: This endpoint saves Problem and returns back saved Problem Transfer Object
+      requestBody:
+        description: Body with Problem Transfer Object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProblemOpenApiTo'
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: string
+          required: true
+          description: id
+      responses:
+        200:
+          description: Saved successfuly
+          content:
+            application/json:
+              schema:
+                type: string
+                format: date-time
+                example: '2023-01-01T12:00:00Z'
+
+components:
+  schemas:
+    ProblemOpenApiTo:
+      description: Data element for Problem from Open Api
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        question:
+          type: string
+        commentsToId:
+          type: string
+        categoryName:
+          type: string
+
+    AnotherProblemOpenApiTo:
+      description: Data element for another Problem from Open Api
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        question:
+          type: string
+        commentsToId:
+          type: string
+        categoryName:
+          type: string
