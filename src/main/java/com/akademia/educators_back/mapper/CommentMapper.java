@@ -28,5 +28,5 @@ public class CommentMapper {
         commentTo.setProblemToId(commentEntity.getProblemEntity() != null ? commentEntity.getProblemEntity().getId() : null);
         return commentTo;
     }
-
 }
+
