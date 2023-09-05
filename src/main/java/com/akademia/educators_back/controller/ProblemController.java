@@ -21,7 +21,9 @@ import java.util.List;
 @RequestMapping("api/problems")
 @RestController
 @AllArgsConstructor
-public class ProblemController {
+public class ProblemController implements ProblemsApiDelegate {
+
+    
 
     private static final Logger LOG = LoggerFactory.getLogger(ProblemController.class);
     public ProblemServiceImpl problemService;

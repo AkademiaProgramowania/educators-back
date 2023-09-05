@@ -3,6 +3,7 @@ package com.akademia.educators_back.service.impl;
 import com.akademia.educators_back.mapper.ProblemMapper;
 import com.akademia.educators_back.repository.CategoryRepository;
 import com.akademia.educators_back.repository.ProblemRepository;
+import com.akademia.educators_back.to.ProblemTo;
 import com.akademia.educators_back.validator.ProblemValidator;
 import com.openapi.gen.springboot.api.ProblemsApiDelegate;
 import com.openapi.gen.springboot.to.ProblemOpenApiTo;
@@ -16,10 +17,7 @@ import java.util.Optional;
 @Service
 public class ProblemOpenApiImpl implements ProblemsApiDelegate {
 
-    private ProblemRepository problemRepository;
-    private ProblemMapper problemMapper;
-    private ProblemValidator problemValidator;
-    private CategoryRepository categoryRepository;
+    ProblemServiceImpl problemService;
 
     @Override
     public Optional<NativeWebRequest> getRequest() {
@@ -28,7 +26,9 @@ public class ProblemOpenApiImpl implements ProblemsApiDelegate {
 
     @Override
     public ResponseEntity<ProblemOpenApiTo> getProblemById(String id) {
-        return ProblemsApiDelegate.super.getProblemById(id);
+        Long ID = Long.parseLong(id);
+        ProblemTo problemTo = problemService.getProblemById(ID);
+        return ResponseEntity.ok(new ProblemOpenApiTo());
     }
 
     @Override
