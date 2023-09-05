@@ -3,6 +3,7 @@ package com.akademia.educators_back.mapper;
 import com.akademia.educators_back.entity.ProblemEntity;
 import com.akademia.educators_back.to.NewProblemTo;
 import com.akademia.educators_back.to.ProblemTo;
+import com.openapi.gen.springboot.to.ProblemOpenApiTo;
 import org.springframework.stereotype.Component;
 
 /**
@@ -66,4 +67,16 @@ public class ProblemMapper {
         problemTo.setCategoryName(problemEntity.getCategoryEntity().getCategoryName());
         return problemTo;
     }
+
+    public ProblemOpenApiTo toProblemOpenApiTo(ProblemTo problemTo){
+        ProblemOpenApiTo problemOpenApiTo = new ProblemOpenApiTo();
+        if(problemTo != null){
+            problemOpenApiTo.setId(String.valueOf(problemTo.getId()));
+        }
+        problemOpenApiTo.setTitle(problemTo.getTitle());
+        problemOpenApiTo.setQuestion(problemTo.getQuestion());
+        return problemOpenApiTo;
+    }
+
+
 }

@@ -18,6 +18,7 @@ import java.util.Optional;
 public class ProblemOpenApiImpl implements ProblemsApiDelegate {
 
     ProblemServiceImpl problemService;
+    ProblemMapper problemMapper;
 
     @Override
     public Optional<NativeWebRequest> getRequest() {
@@ -28,7 +29,8 @@ public class ProblemOpenApiImpl implements ProblemsApiDelegate {
     public ResponseEntity<ProblemOpenApiTo> getProblemById(String id) {
         Long ID = Long.parseLong(id);
         ProblemTo problemTo = problemService.getProblemById(ID);
-        return ResponseEntity.ok(new ProblemOpenApiTo());
+        ProblemOpenApiTo problemOpenApiTo = problemMapper.toProblemOpenApiTo(problemTo);
+        return ResponseEntity.ok(problemOpenApiTo);
     }
 
     @Override
