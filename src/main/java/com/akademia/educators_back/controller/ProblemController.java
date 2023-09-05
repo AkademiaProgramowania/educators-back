@@ -4,6 +4,7 @@ import com.akademia.educators_back.exception.ProblemDoesNotExistException;
 import com.akademia.educators_back.service.impl.ProblemServiceImpl;
 import com.akademia.educators_back.to.NewProblemTo;
 import com.akademia.educators_back.to.ProblemTo;
+import com.openapi.gen.springboot.api.ProblemsApiDelegate;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
